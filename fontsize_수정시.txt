@@ -1,0 +1,13 @@
+# style.css
+p {
+    line-height: 1.9em;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+# blog_basic.css
+pre {
+  font-size: 1.0em!important;
+  background-color: #f8f8f8!important;
+  font-family: 'Roboto Mono','Lucida Console','Trebuchet MS','Courier New', Monaco, courier,'PingFang SC','Hiragino Sans GB','Microsoft Jhenghei','Microsoft YaHei', monospace!important
+}
