@@ -18,6 +18,8 @@ Intro
 하지만, GPU도 다 같은 GPU가 아니다.
 현재 tensorflow에서 지원하는 GPU는 Nvidia를 기본으로 하며 AMD의 경우 아직 이용하기에 많이 불편하다. 
 
+---
+
 tensorflow-gpu 설치
 ---
 #### 1. CUDA 설치 

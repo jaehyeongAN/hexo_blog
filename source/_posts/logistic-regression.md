@@ -13,6 +13,8 @@ Intro
 ---
 이름은 regression이나 분류 알고리즘으로 주로 사용되는 알고리즘이 있다. 바로 로지스틱 회귀(Logistic Regression)이다. 로지스틱 회귀는 샘플이 특정 클래스에 속할 확률을 추정하는 방식으로 동작하는 이진 분류(Binary Classification) 모델이다.
 
+---
+
 Logistic Regression(로지스틱 회귀)
 ---
 로지스틱 회귀(logistic regression)는 샘플이 특정 클래스에 속할 확률을 추정하는 데 널리 사용된다.(예를 들어 해당 이메일이 spam일 확률과 spam이 아닐 확률)
