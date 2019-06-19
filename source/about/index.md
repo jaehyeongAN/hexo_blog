@@ -2,13 +2,16 @@
 title: Hello, 
 date: 2018-06-29 10:49:26
 ---
-# JaeHyeong
+# JAEHYEONG AN
+<img src="/image/me.jpg" width="330" height="400">
 
-<!-- ![my photo](../image/me.jpg) -->
-<img src="/image/me.jpg" width="350" height="400">
+- Graduated from Ajou University
+- Master degree at Gachon University
+<br/>
 
--- Graduated from Ajou University
--- Master degree at Gachon University
 
-기존 blog: [네이버블로그](https://blog.naver.com/nonamed0000)
-관심분야: *Artifical Intelligence, Machine learning, Deep learning, Data Analysis, Bigdata*
+
+Previous blog: [NAVER blog](https://blog.naver.com/nonamed0000)
+Github: [jaehyeongAN](https://github.com/jaehyeongAN)
+Instagram: [jh_an.ds](http://instagram.com/an_jh.ds)
+Interests: *Machine learning, Deep learning, Python, Spark*
