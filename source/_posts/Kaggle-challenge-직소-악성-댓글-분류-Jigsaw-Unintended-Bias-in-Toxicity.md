@@ -390,10 +390,10 @@ max_len 값은 방금 위에서 sequence로 변환한 데이터 중 가장 많�
 <br/>
 
 ## 6. Embedding + LSTM model
+<img src="/image/embedding_lstm.png" width="850" height="400"> 
 - 예측을 위해서 embedding 레이어와 lstm 레이어를 연결하여 딥러닝 모델을 구축하였다.
 - **Embedding 레이어**는 텍스트 데이터의 단어 사이의 의미관계를 학습하는데 효과적이므로 텍스트 데이터 학습시 많이 사용되며,
 - LSTM 모델은 **양방향 LSTM(Bidirectional LSTM)**으로 구축하여 시간적 의미와 상관없이 단어들 사이의 양방향적으로 의미 순서를 학습하도록 하였다.
-<img src="/image/embedding_lstm.png" width="800" height="400"> 
 
 ```python
 def Embedding_CuDNNLSTM_model(max_words, max_len):
