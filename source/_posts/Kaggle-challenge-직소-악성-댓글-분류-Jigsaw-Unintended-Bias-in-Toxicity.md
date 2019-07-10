@@ -1,5 +1,5 @@
 ---
-title: Kaggle challenge! - 직소 악성 대화 분류(Jigsaw Unintended Bias in Toxicity Classification)
+title: '[Kaggle challenge] 직소 악성 대화 분류(Jigsaw Unintended Bias in Toxicity Classification)'
 date: 2019-07-04 00:11:36
 tags:
 - kaggle

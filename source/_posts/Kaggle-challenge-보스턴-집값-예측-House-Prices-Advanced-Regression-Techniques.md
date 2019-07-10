@@ -1,5 +1,5 @@
 ---
-title: 'Kaggle challenge! - 보스턴 집값 예측(House Prices: Advanced Regression Techniques)'
+title: '[Kaggle challenge] 보스턴 주택 가격 예측(House Prices: Advanced Regression Techniques)'
 date: 2019-07-08 21:59:56
 tags:
 - kaggle
