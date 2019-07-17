@@ -13,7 +13,6 @@ Intro
 ---
 금융거래 중 부정하게 사용되는 거래를 부정 거래라고 합니다. 그 중 신용카드 위변조, 도용, 부정거래에 대한 비율은 해마다 증가하고 있는 추세입니다.
 ![credit](http://file.dailian.co.kr/news/201410/news_1413332051_463554_m_2.jpg)
-(출처 : [dailian.co.kr](http://m.dailian.co.kr/news/view/463554#cb))
 
 따라서, 최근에는 국내 주요 은행들은 FDS(Fraud Detection System)을 도입하여 이러한 부정거래를 막기위해 노력하고 있지만 주로 룰(Rule) 기반으로 사람에 의해 이루어지기 때문에 실시간으로 정확한 탐지가 어려운 상황이라고 합니다. 
 
@@ -55,7 +54,6 @@ Isolation Forest
 이상탐지 알고리즘으로는 **Isolation Forest** 알고리즘을 이용하였습니다.
 Isolation Forest 는 Tree 기반으로 데이터를 나누어 데이터의 관측치를 고립시키는 알고리즘입니다. 이상 데이터의 경우 root node와 가까운 depth를 가지고, 정상 데이터의 경우 tree의 말단 노드에 가까운 depth를 가집니다. 
 ![isolationforest](/image/isolation.jpg)
-(출처 : [https://www.slideshare.net/mlvlc/l14-anomaly-detection](https://www.slideshare.net/mlvlc/l14-anomaly-detection))
 
 이상 탐지 알고리즘 적용
 ---

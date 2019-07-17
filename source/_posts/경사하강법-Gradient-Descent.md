@@ -21,7 +21,6 @@ Gradient Descent
 ---
 #### 경사하강법(Gradient Descent)
 <img src="/image/gradient_descent.png" width="500" height="400">
-(출처 : [https://srdas.github.io/DLBook/GradientDescentTechniques.html](https://srdas.github.io/DLBook/GradientDescentTechniques.html))
 
 경사하강법이란 비용함수(Cost Function)을 최소화하기 위하여 반복적해서 파라미터를 조정해나가는 것을 말한다. 
 만약 당신이 짙은 안개가 낀 산속에서 길을 잃었고 발밑 지면의 기울기만 느낄 수 있다고 가정해보자. 산 밑으로 내려갈 수 있는 가장 좋은 방법은 무엇일까? 바로 가장 가파른 길을 따라 산 아래로 내려가는 것이며 바로 이것이 경사 하강법의 기본원리이다.
@@ -42,7 +41,6 @@ Gradient Descent
  -- 스텝이 너무 커 전역 최솟값(global minimum)을 가로질러 반대편으로 건너뛰어 최솟값에서 멀어질 수 있음
 
 <img src="/image/learning_rate_sl.png" width="500" height="400">
-(출처 : [https://srdas.github.io/DLBook/GradientDescentTechniques.html](https://srdas.github.io/DLBook/GradientDescentTechniques.html))
 
 
 #### 경사하강법의 문제점
