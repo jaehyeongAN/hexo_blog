@@ -9,80 +9,134 @@ tags:
 - scikit-learn
 - fraud detection system
 ---
+
 Intro
 ---
-금융거래 중 부정하게 사용되는 거래를 부정 거래라고 합니다. 그 중 신용카드 위변조, 도용, 부정거래에 대한 비율은 해마다 증가하고 있는 추세입니다.
-![credit](http://file.dailian.co.kr/news/201410/news_1413332051_463554_m_2.jpg)
+금융거래 중 부정하게 사용되는 거래를 부정 거래라고 합니다. 그 중 신용카드 위변조, 도용, 부정거래에 대한 비율은 해마다 증가하고 있는 추세입니다. 아래 표는 연도별 신용카드 부정사용 금액.
+<img src="/image/creditcard_main.jpg" width="550" height="600">
 
-따라서, 최근에는 국내 주요 은행들은 FDS(Fraud Detection System)을 도입하여 이러한 부정거래를 막기위해 노력하고 있지만 주로 룰(Rule) 기반으로 사람에 의해 이루어지기 때문에 실시간으로 정확한 탐지가 어려운 상황이라고 합니다. 
+따라서, 최근에는 국내 주요 은행들은 **FDS(Fraud Detection System)**을 도입하여 이러한 부정거래를 막기위해 노력하고 있지만 주로 룰(Rule) 기반으로 사람에 의해 이루어지기 때문에 실시간으로 정확한 탐지가 어려운 상황이라고 합니다. 
 
- 목표
- ----
-여기서는 머신러닝을 이용하여, 이러한 부정거래를 탐지해 보고자 합니다. 하지만, 지도학습이 아닌 **비지도 학습**을 이용합니다.  그 중 **이상 탐지(Outlier Detection)** 알고리즘을 이용하여 라벨을 통한 학습이 아닌 이상치 데이터 집단을 찾아 그 이상치 집단이 부정거래 데이터와 일치 및 유사한지 알아볼 것입니다.
-
-
-신용카드 데이터 셋
 ---
-데이터 셋의 경우 kaggle에서 제공하는 [Credit Card 데이터 셋](https://www.kaggle.com/mlg-ulb/creditcardfraud)을 이용하였습니다. 
+
+## 목표
+여기서는 머신러닝을 이용하여, 이러한 부정거래를 탐지해 보고자 합니다. 하지만, 지도학습이 아닌 **비지도 학습**을 이용합니다.  그 중 **이상 탐지(Outlier Detection)** 알고리즘을 이용하여 라벨을 통한 학습이 아닌 이상치 데이터 집단을 찾아 그 이상치 집단이 부정거래 데이터와 일치 및 유사한지 알아볼 것입니다.
+<br/>
+
+## 1. 신용카드 데이터 셋
+데이터 셋의 경우 kaggle에서 제공하는 [Credit Card Fraud Detection Dataset](https://www.kaggle.com/mlg-ulb/creditcardfraud)을 이용하였습니다. 
 위 데이터 셋은 2013년 9월 유럽의 실제 신용 카드 거래 데이터를 담고 있습니다. 데이터는 총 284,807건이며 그 중 492건만이 부정 거래 데이터 입니다. 
 즉, 데이터가 매우 **불균형(imbalanced)** 합니다. 
 
-![dataset](/image/creditcard_dataset.png)
+```python
+import pandas as pd
+
+df = pd.read_csv('./input/creditcard.csv')
+df.head(10)
+```
+<img src="/image/creditcard_load.JPG" width="1000" height="600">
 위 데이터 셋은 개인정보 비식별화처리로 인해 칼럼정보를 알 수 없으며, 데이터 또한 스케일(scale) 및 PCA(principal component analysis) 처리 되어있습니다.
 총 31개의 칼럼으로 이루어져 있고, **Time, Amount, Class**를 제외한 모든 칼럼은 **비식별화**처리 되어있습니다.
 
+```python
+df.info()
+```
+<img src="/image/creditcard_info.JPG" width="300" height="600">
+데이터는 총 284,807건이며 null값은 존재하지 않는 정형 데이터 입니다.
+<br/>
 
-데이터 탐색(EDA)
----
-1. 시간(Time)대별 정상/부정 거래 비율 
- ![time](/image/time.png)
+## 2. 데이터 탐색(EDA)
+- 시간(Time)대별 정상/부정 거래 비율 
+```python
+import matplotlib.pyplot as plt
+
+# 시간대별 트랜잭션 양
+f, (ax1, ax2) = plt.subplots(2,1, sharex=True, figsize=(12,4))
+ax1.hist(df.Time[df.Class==1], bins=50)
+ax2.hist(df.Time[df.Class==0], bins=50)
+
+ax1.set_title('Fraud')
+ax2.set_title('Normal')
+plt.xlabel('Time(in Seconds)'); plt.ylabel('Number of Transactions')
+plt.show()
+```
+ <img src="/image/time.png" width="800" height="600">
 음.. 대체적으로 정상 거래의 경우 시간에 따라 주기적인 반면 부정 거래의 경우 불규칙한 특성을 보입니다.
+<br/>
 
 
-2. 금액(Amount)대별 정상/부정 거래 비율
-![Amount](/image/amount.png)
+- 금액(Amount)대별 정상/부정 거래 비율
+```python
+import matplotlib.pyplot as plt
+
+# 금액대별 트랜잭션 양
+f, (ax1, ax2) = plt.subplots(2,1, sharex=True, figsize=(12,4))
+ax1.hist(df.Amount[df.Class==1], bins=30)
+ax2.hist(df.Amount[df.Class==0], bins=30)
+ax1.set_title('Fraud')
+ax2.set_title('Normal')
+
+plt.xlabel('Amount ($)')
+plt.ylabel('Number of Transactions')
+plt.yscale('log')
+plt.show()
+```
+ <img src="/image/amount.png" width="750" height="600">
 정상 거래의 경우 다양한 금액대에서 발생되지만, 부정 거래의 경우 적은 금액에서 주로 발생하는 것 같습니다.
+<br/>
 
-
-3. 비식별칼럼 정상/부정거래 비율
+- 비식별칼럼 정상/부정거래 비율
 특성 차이가 심한 일부 변수만 표시하였습니다.
-![columns](/image/col.png)
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
 
+# 정상/비정산 럼간 값 분포
+v_features = df.ix[:,1:29].columns
+for cnt, col in enumerate(df[v_features]):
+    sns.distplot(df[col][df.Class==1], bins=50)
+    sns.distplot(df[col][df.Class==0], bins=50)
+    plt.legend(['Y','N'], loc='best')
+    plt.title('histogram of feature '+str(col))
+    plt.show()
+```
 
-Isolation Forest 
----
-이상탐지 알고리즘으로는 **Isolation Forest** 알고리즘을 이용하였습니다.
-Isolation Forest 는 Tree 기반으로 데이터를 나누어 데이터의 관측치를 고립시키는 알고리즘입니다. 이상 데이터의 경우 root node와 가까운 depth를 가지고, 정상 데이터의 경우 tree의 말단 노드에 가까운 depth를 가집니다. 
-![isolationforest](/image/isolation.jpg)
+ <img src="/image/col.png" width="750" height="600">
+<br/>
 
-이상 탐지 알고리즘 적용
----
+## 3. Isolation Forest 
+이상탐지 알고리즘으로는 [**Isolation Forest**](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html) 알고리즘을 이용하였습니다. Isolation Forest 는 Tree 기반으로 데이터를 나누어 데이터의 관측치를 고립시키는 알고리즘입니다. 이상 데이터의 경우 root node와 가까운 depth를 가지고, 정상 데이터의 경우 tree의 말단 노드에 가까운 depth를 가집니다. 
+<img src="/image/isolation.jpg" width="650" height="600">
+<br/>
+
+## 4. 이상 탐지 알고리즘 적용
 Isolation Forest 알고리즘은 현재 scikit-learn에서 제공되고 있으며, [링크](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html)를 통해 다큐먼트를 확인하실 수 있습니다.
-
-Isolation Forest는 이상치 점수(outlier score)를 제공합니다. 
-정상 거래/ 부정 거래에 대한 이상치 점수는 아래와 같습니다.
-![out_score](/image/outlierscore.png)
-
+Isolation Forest는 이상치 점수(outlier score)를 제공합니다. 정상 거래/ 부정 거래에 대한 이상치 점수는 아래와 같습니다.
+<img src="/image/outlierscore.png" width="800" height="600">
 위의 분포를 보았을 때, 정상 / 부정 거래 간 비율이 다르게 나타나는 것을 확인할 수 있습니다. 
+<br/>
 
-### 적용
+### Python
 우선 적용하기에 앞서, 데이터 불균형(Data Imbalance)를 해결하기 위하여, 정상 거래건에 대해 Down sampling을 70% 비율로 진행하였습니다.
 ```python
-credit_data = pd.read_csv('./data/creditcard.csv')
+import pandas as pd 
+from imblearn.under_sampling import RandomUnderSampler
 
+credit_data = pd.read_csv('./data/creditcard.csv')
 X = credit_data.drop(['Class'], axis=1)
 y = credit_data['Class']
 print(Counter(y))	# {0: 284315, 1: 492}
 
-# 다운 샘플링 
-from imblearn.under_sampling import RandomUnderSampler
+# Under Sampling
 sampler = RandomUnderSampler(ratio=0.70, random_state=0)
 X, y = sampler.fit_sample(X, y)
 print('Class : ',Counter(y))	# {0: 702, 1: 492}
 ```
+<br/>
 이후, Isolation Forest를 아래와 같은 파라미터를 통해 적용하였습니다.
 ```python
 from sklearn.ensemble import IsolationForest
+
 clf = IsolationForest(n_estimators=300, contamination=0.40, random_state=42)
 clf.fit(X)
 pred_outlier = clf.predict(X)
@@ -92,6 +146,7 @@ pred_outlier = pd.DataFrame(pred_outlier).replace({1:0, -1:1})
 - contamination : 이상치 비율
 
 이상탐지 예측값은 1이 정상, -1이 이상으로 분류됩니다. 이를 Class 라벨과의 오차를 계산하여야 하기 때문에, 같은 범위로 바꿔주었습니다. 
+<br/>
 
 ### 시각화
 이상탐지 결과를 2d 및 3d로 시각화한 결과 입니다. ( 시각화를 위해 차원을 축소하였습니다.)
@@ -103,6 +158,7 @@ from mpl_toolkits.mplot3d import Axes3D
 plt.scatter(X[:,0], X[:,1], c=pred_outlier, cmap='Paired', s=40, edgecolors='white')
 plt.title("Isolation Forest")
 plt.show()
+
 # plot 3d
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
@@ -113,13 +169,12 @@ ax.set_zlabel('pcomp 3')
 plt.show()
 ```
 - 2차원 시각화
-![2d](/image/2d.png)
+<img src="/image/2d.png" width="650" height="600">
 - 3차원 시각화
-![3d](/image/3d.png)
+<img src="/image/3d.png" width="650" height="600">
+<br/>
 
-
-결과
----
+## 예측 성능
 예측값을 실제 부정거래여부 칼럼인 Class와 비교하여 성능을 살펴보겠습니다. 
 측정 지표로는 Accuracy(정확도), Recall(재현율), Precision(정밀도), F1-score 입니다.  
 
