@@ -1,10 +1,15 @@
 ---
-title: R-CNN
+title: R-CNN(Regions with CNN features) 논문 리뷰
 date: 2019-10-10 23:56:28
 tags:
-- wefwe
-- fewf
-- fewfwe
+- rcnn
+- fastrcnn
+- fasterrcnn
+- selectivesearch
+- nms
+- regionproposals
+- iou
+- voc
 ---
 Intro 
 ---
