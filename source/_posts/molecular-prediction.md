@@ -362,9 +362,9 @@ test_data = test_le.drop(['id','molecule_name',], axis=1)
 
 ```python
 # z-score standardization
-train_scale = (train_data - train_data.mean()) / train_data.mean()
+train_scale = (train_data - train_data.mean()) / train_data.std()
 train_scale = train_scale.fillna(0)
-test_scale = (test_data - train_data.mean()) / train_data.mean()
+test_scale = (test_data - train_data.mean()) / train_data.std()
 ```
 
 #### 4.5. Variable Correlations

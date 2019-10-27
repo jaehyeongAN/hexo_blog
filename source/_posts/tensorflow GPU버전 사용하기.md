@@ -36,8 +36,8 @@ tensorflow-gpu 설치
 
 
 #### 2. cuDNN 다운로드 
-CUDA 설치를 완료하였다면 이제 cuDNN을 다운로드하여 CUDA 디렉토리에 넣어줘야 한다. 
-[cuDNN](https://developer.nvidia.com/rdp/cudnn-download)을 설치하기 위해서는 nvidia에 로그인을 해야하므로 가입이 안되어있다면 가입을 한 후 접속하면 된다. 
+CUDA 설치를 완료하였다면 이제 [cuDNN](https://developer.nvidia.com/rdp/cudnn-download)을 다운로드하여 CUDA 디렉토리에 넣어줘야 한다. 
+cuDNN을 설치하기 위해서는 nvidia에 로그인을 해야하므로 가입이 안되어있다면 가입을 한 후 접속하면 된다. 
 
 주의할 점은 위에서 설치한 CUDA버전에 호환되는 cuDNN을 다운로드 해야 한다는 것이다. 위에서 CUDA 10.0버전을 설치해주었기 때문에 cuDNN도 CUDA 10.0에 호환되는 버전(for CUDA 10.0)으로 다운받는다.
 

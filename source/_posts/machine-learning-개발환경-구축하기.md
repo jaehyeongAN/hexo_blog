@@ -42,10 +42,8 @@ Install Miniconda(+python)
 우선 Miniconda 홈페이지를 가면 설치가 가능합니다.
 <img src="/image/miniconda-ori.PNG" width="1000" height="1000">
 
-~~위 링크에서는 현재 python 2.7버전과 3.7버전을 제공하고 있습니다. 최신버전이므로 다운받으셔도 무방하지만 한 가지 고려할 것이 있습니다.~~
-~~만약 추후 deep learning을 하고자 한다면 3.7버전 보다 아래 버전을 사용하시는 것이 좋습니다. tensorflow가 아직 3.7버전에 호환되지 않거든여ㅜㅜ~~
-~~그래서 [Miniconda installer archive](https://repo.continuum.io/miniconda/)에서 python3.6버전으로 되어있는 것을 찾으시면 됩니다.~~
-~~저는 안정성 문제를 고려하여 [Miniconda2-4.5.4-Windows-x86_64.exe](https://repo.continuum.io/miniconda/Miniconda2-4.5.4-Windows-x86_64.exe)을 이용하고 있습니다.~~
+~~위 링크에서는 현재 python 2.7버전과 3.7버전을 제공하고 있습니다. 최신버전이므로 다운받으셔도 무방하지만 한 가지 고려할 것이 있습니다. 만약 추후 deep learning을 하고자 한다면 3.7버전 보다 아래 버전을 사용하시는 것이 좋습니다. tensorflow가 아직 3.7버전에 호환되지 않거든여ㅜㅜ~~
+~~그래서 [Miniconda installer archive](https://repo.continuum.io/miniconda/)에서 python3.6버전으로 되어있는 것을 찾으시면 됩니다.저는 안정성 문제를 고려하여 [Miniconda2-4.5.4-Windows-x86_64.exe](https://repo.continuum.io/miniconda/Miniconda2-4.5.4-Windows-x86_64.exe)을 이용하고 있습니다.~~
 
 (수정)다시 알아보니 이제 python 3.7버전도 tensorflow와 호환이 된다네요! 그냥 [Miniconda 홈페이지](https://docs.conda.io/en/latest/miniconda.html)에서 최신버전을 다운받으셔도 무방할 것 같습니다.
 
