@@ -28,13 +28,13 @@ Intro
 
 ## 1. Introduction
 지난 10년간 다양한 visual recognition 작업에서는 주로 *SIFT와 HOG(gradient 기반의 특징점 추출 알고리즘)*가 가장 많이 사용되었는데, 이는 2010 ~ 2012년의 PASCAL VOC obeject detection에서 일반적으로 인정되는 방법이었다. 하지만 이후 back-propagation이 가능한 SGD(Stochastic Gradient Descent)기반의 CNN(Convolutional Neural Networks)이 등장하기 시작하였고 SIFT와 HOG와 같은 알고리즘과 비교하여 PASCAL VOC object detection에서 굉장한 성능을 보이게 되었다.
-Image Classification과 다르게 detection은 이미지내에서 객체를 localizing하는 것이 요구되는데 이를 위해, 이를 위해 논문의 모델은 sliding-window 방식을 적용하였고, 높은 공간 해상도(high spartial resolution)을 유지하기 위해 5개의 Convolutional 레이어를 적용하였다. 
+Image Classification과 다르게 detection은 이미지내에서 객체를 localizing하는 것이 요구되는데 이를 위해, 논문의 모델은 sliding-window 방식을 적용하였고, 높은 공간 해상도(high spartial resolution)을 유지하기 위해 5개의 Convolutional 레이어를 적용하였다. 
 우선 간단하게 R-CNN은 아래와 같은 프로세스로 작동한다.
 <img src="/image/rcnn.JPG" width="800" height="200">
 
 > **R-CNN 프로세스**
 > 1. Input 이미지로부터 2,000개의 독립적인 region proposal을 생성
-> 2. CNN을 통해 각 proposal마다 고정된 길이의 feature vector를 추출(CNN 적용 시서로 다른 region shape에 영향을 받지 않기 위해 fixed-size로 이미지를 변경)
+> 2. CNN을 통해 각 proposal 마다 고정된 길이의 feature vector를 추출(CNN 적용 시 서로 다른 region shape에 영향을 받지 않기 위해 fixed-size로 이미지를 변경)
 > 3. 이후, 각 region 마다 category-specific linear SVM을 적용하여 classification을 수행
 
 <br/>
@@ -71,7 +71,7 @@ Image Classification과 다르게 detection은 이미지내에서 객체를 loca
 ### Domain-specific fine-tuning
 Classification에 최적화된 CNN 모델을 새로운 Detection 작업 그리고 VOC 데이터셋에 적용하기 위해 오직 VOC의 region proposals를 통해 SGD(stochastic gradient descent)방식으로 CNN 파라미터를 업데이트 한다. 이후 CNN을 통해 나온 feature map은 SVM을 통해 classification 및 bounding regreesion이 진행되게 되는데, 여기서 SVM 학습을 위해 NMS(non-maximum suppresion)과 IoU(inter-section-over-union)이라는 개념이 활용된다. 
 
-IoU는 Area of Overlap / Area of Union으로 계산되며, 간단히 말해 전체 bounding box 영역 중 겹치는 부분의 비율을 나타내는데 NMS 알고리즘이 이 IoU 점수를 활용하여 겹치는 박스를 모두 제거하고 가장 적합한 박스만 남기게 된다. NMS의 과정을 간단히 살펴보면 아래와 같은 프로세로 진행된다.
+IoU는 Area of Overlap(교집합) / Area of Union(합집합)으로 계산되며, 간단히 말해 전체 bounding box 영역 중 겹치는 부분의 비율을 나타내는데 NMS 알고리즘이 이 IoU 점수를 활용하여 겹치는 박스를 모두 제거하고 가장 적합한 박스만 남기게 된다. NMS의 과정을 간단히 살펴보면 아래와 같은 프로세로 진행된다.
 
 > **NMS(Non-maximum suppresion)**
 > 1. 예측한 bounding box들의 예측 점수를 내림차순으로 정렬
@@ -110,13 +110,20 @@ R-CNN의 이러한 한계들로 인해, 추후 프로세스 및 연산 측면에
 ### Fast R-CNN
 <img src="/image/fastrcnn.JPG" width="600" height="200">
 Fast R-CNN의 R-CNN의 문제를 해결하기 위해 나온 모델이다. 
-동작 방식은 R-CNN과 유사하게 region proposal이 작동하지만, Fast R-CNN은 먼저 전체 이미지가 CNN 모델에  input으로 입력되고, 이미지는 convolutional layer와 pooling layer를 거쳐 feature map을 생성하게 된다. 그리고 그때, 각 region마다 RoI(region of interest) Pooling layer가 feature map을 통해 고정 길이의 feature vector를 추출한다. 추출된 feature vector는 fully connected layer로 연결되어 마침내 두 가지 역할을 하는데, 하나는 softmax를 통한 **object class 예측**이고, 다른 하나는 **bounding-box에 대한 offsets(4 real-valued)을 예측**하게 된다. 
+동작 방식은 R-CNN과 유사하게 region proposal이 작동하지만, RCNN과 다르게 **Fast R-CNN은 먼저 전체 이미지가 ConvNet의 input으로 입력이 된다.** 이미지는 ConvNet을 통과하며 feature map을 추출하게 되고, 이 feature map은 selectice search 기반의 region proposal을 통해 RoI(Regions of Interest)를 뽑아낸다. 
+
+이후 선택 된 Region들은 RoI Pooling layer를 거치게 되는데, 이 과정은 추후 예측을 위해 region들을 다운 사이즈하여 모두 같은 고정된 크기로 변환해주는 역할을 한다. 마지막 과정으로  fully connected layer를 거치며 Softmax Classification과 Bounding Box Regression이 수행된다. 
+
+위의 과정은 하나의 ConvNet모델에 의해 동시에 수행이 되기 때문에 RCNN에 비하여 훨씬 빠르게 작동하는 장점이 있다. 하지만 결국 Fast RCNN 또한 많은 연산을 필요로 하는 Selective Search 기법이 작동을 하므로 큰 데이터 셋에 적용하는데는 한계가 있다.
+
 <br/>
 
 ### Faster R-CNN
 <img src="/image/fasterrcnn.JPG" width="500" height="200">
-Faster R-CNN은 R-CNN과 Fast R-CNN이 region proposal로 인한 과도한 연산 문제를 해결하기 위해 나온 모델이다. 기존 region proposal에 사용되었던 selective search는 연산량을 늘리고 시간을 많이 소모하는 주요 원인이었다. 그래서 Faster R-CNN에서는 selective search 알고리즘을 없애고 **Region Proposal Networks**라는 뉴럴 네트워크를 추가하여 region proposal을 예측하도록 했다.  
-그 후, 예측된 region proposal은 Fast R-CNN과 유사하게 RoI Pooling layer를 거쳐 이미지 class를 분류하고 bounding-box에 대한 offsets 예측하는데 사용된다.
+Faster R-CNN은 R-CNN과 Fast R-CNN이 region proposal로 인한 과도한 연산 문제를 해결하기 위해 나온 모델이다. 기존 region proposal에 사용되었던 selective search는 연산량을 늘리고 시간을 많이 소모하는 주요 원인이었다. 그래서 Faster R-CNN에서는 selective search 알고리즘을 없애고 **Region Proposal Networks(RPN)**라는 뉴럴 네트워크를 추가하여 region proposal을 예측하도록 했다.  
+
+그 후, 예측된 region proposal은 Fast R-CNN과 유사하게 RoI Pooling layer를 거치며 모든 region을 같은 크기로 고정 후, Classification 및 Bounding Box Regreesion이 수행된다.
+
 <br/>
 
 ## References
