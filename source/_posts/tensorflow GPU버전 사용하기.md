@@ -23,9 +23,9 @@ Intro
 tensorflow-gpu 설치
 ---
 #### 1. CUDA 설치 
-우선 CUDA를 설치해야 한다. 
-현재 CUDA의 경우 최신 버전이 10.1이지만, 확인 결과 10.1 버전은 아직 tensorflow와 호환이 되지 않는다. 그러니 한 단계 낮은 10.0버전으로 받아야 한다. 
-아래 화면의 [CUDA Toolkit Arcive](https://developer.nvidia.com/cuda-toolkit-archive)에서 **CUDA Toolkit 10.0**버전을 클릭한다. 
+우선 CUDA를 설치해야 한다. 현재 CUDA의 경우 최신 버전이 10.2이지만, 확인 결과 아직까지는 공식적으로 tensorflow가 CUDA 10.0버전까지만 지원한다. 
+
+[CUDA Toolkit Arcive(https://developer.nvidia.com/cuda-toolkit-archive)](https://developer.nvidia.com/cuda-toolkit-archive)로 이동하여 아래 화면과 같이 **CUDA Toolkit 10.0**버전을 클릭한다. 
 
 <img src="/image/cuda_toolkit.JPG" width="800" height="400">
 
@@ -36,7 +36,7 @@ tensorflow-gpu 설치
 
 
 #### 2. cuDNN 다운로드 
-CUDA 설치를 완료하였다면 이제 [cuDNN](https://developer.nvidia.com/rdp/cudnn-download)을 다운로드하여 CUDA 디렉토리에 넣어줘야 한다. 
+CUDA 설치를 완료하였다면 이제 [cuDNN(https://developer.nvidia.com/rdp/cudnn-download)](https://developer.nvidia.com/rdp/cudnn-download)을 다운로드하여 CUDA 디렉토리에 넣어줘야 한다. 
 cuDNN을 설치하기 위해서는 nvidia에 로그인을 해야하므로 가입이 안되어있다면 가입을 한 후 접속하면 된다. 
 
 주의할 점은 위에서 설치한 CUDA버전에 호환되는 cuDNN을 다운로드 해야 한다는 것이다. 위에서 CUDA 10.0버전을 설치해주었기 때문에 cuDNN도 CUDA 10.0에 호환되는 버전(for CUDA 10.0)으로 다운받는다.
@@ -75,10 +75,21 @@ cuDNN을 설치하기 위해서는 nvidia에 로그인을 해야하므로 가입
 <br />
 
 #### 6. tensorflow 실행 및 확인 
-promt창을 열어 tensorflow를 import했을 때 에러가 나지 않으면 설치에 성공한 것이다. 
-아래처럼 tensorflow를 import하고 tf.Session()을 통해 tensorflow가 정말 GPU를 잘 인식하고 있는지 확인할 수 있다. 
+promt창을 열어 아래와 같이 tensorflow를 import하였을 때  error가 나지 않는다면 우선 tensorflow 설치에 성공한 것이다. 
+설치 된 tensorflow 버전을 확인하고 싶을 때는 tf.\__version\__ 을 통해 확인할 수 있다.
+```python
+import tensorflow as tf 
+tf.__version__
+```
+<img src="/image/tensorflow-version.JPG" width="900" height="400">
 
-<img src="/image/check-tensorflow-gpu.JPG" width="900" height="400">
+tensorflow가 GPU버전으로 잘 설치되었고, 나의 GPU를 잘 인식하고 있는지 확인하고 싶다면 아래와 같은 코드를 통해 확인할 수 있다. tensorflow가 인식하는 로컬 device 목록을 보여주게 된다.
+```python
+from tensorflow.pyhton.client import device_lib
+device_lib.list_local_devices()
+```
 
-내 컴퓨터의 GPU의 경우 GeForce GTX 1050 with MAX-Q(모바일 버전ㅠㅠ) 인 것을 확인할 수 있다. 
+<img src="/image/check-tensorflow-gpu.JPG" width="1100" height="400">
+
+내 컴퓨터의 GPU의 경우 GeForce GTX 1050 with MAX-Q인 것을 확인할 수 있다. 
 
