@@ -27,12 +27,12 @@ tensorflow-gpu 설치
 
 [CUDA Toolkit Arcive(https://developer.nvidia.com/cuda-toolkit-archive)](https://developer.nvidia.com/cuda-toolkit-archive)로 이동하여 아래 화면과 같이 **CUDA Toolkit 10.0**버전을 클릭한다. 
 
-<img src="/image/cuda_toolkit.JPG" width="800" height="400">
+<img src="/image/cuda_toolkit.JPG" width="1000" height="400">
 
 <br />
 클릭 후 아래와 같이 자신의 운영체제 맞는 것을 선택한 후 다운로드를 실시하고 다운로드 된 설치파일을 다른 조건 변경없이 그대로 설치하면 된다. 
 
-<img src="/image/cuda_toolkit2.JPG" width="800" height="400">
+<img src="/image/cuda_toolkit2.JPG" width="1000" height="400">
 
 
 #### 2. cuDNN 다운로드 
@@ -41,7 +41,7 @@ cuDNN을 설치하기 위해서는 nvidia에 로그인을 해야하므로 가입
 
 주의할 점은 위에서 설치한 CUDA버전에 호환되는 cuDNN을 다운로드 해야 한다는 것이다. 위에서 CUDA 10.0버전을 설치해주었기 때문에 cuDNN도 CUDA 10.0에 호환되는 버전(for CUDA 10.0)으로 다운받는다.
 
-<img src="/image/cudnn.JPG" width="800" height="400">
+<img src="/image/cudnn.JPG" width="1000" height="400">
 
 위 파일을 다운로드 하면 **cudnn-10.0-windows10-x64-v7.5.1.10** 라는 압축파일이 다운로드 되는데, 압축파일을 풀게 되면 그 안에 아래와 같은 파일이 들어있다.
 
