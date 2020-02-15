@@ -1,5 +1,5 @@
 ---
-title: 텐서플로우(tensorflow) GPU버전 사용하기
+title: 텐서플로우(Tensorflow 2.0) GPU버전 사용하기
 date: 2019-05-01 18:29:10
 tags:
 - python

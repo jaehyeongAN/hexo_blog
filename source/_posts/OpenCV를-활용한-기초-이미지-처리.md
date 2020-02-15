@@ -352,4 +352,4 @@ image_canny = cv2.Canny(image_gray, lower_threshold, upper_threshold)
 plt.imshow(image_canny, cmap='gray')
 plt.show()
 ```
-<img src="/image/opencv-image-14.png">
+<img src="/image/opencv-image-15.png">
