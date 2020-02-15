@@ -139,14 +139,12 @@ model.add(Dropout(0.5))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 # 모델 구축하기
-model.compile(loss='binary_crossentropy',   # 최적화 함수 지정
+model.compile(loss='categorical_crossentropy',   # 최적화 함수 지정
     optimizer='rmsprop',
     metrics=['accuracy'])
 # 모델 확인
 #print(model.summary())
 
-# 모델 훈련하기
-#model.fit(X_train, y_train, batch_size=32, nb_epoch=20)
 # 학습 완료된 모델 저장
 hdf5_file = "./image/7obj-model.hdf5"
 if os.path.exists(hdf5_file):

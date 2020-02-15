@@ -1,5 +1,5 @@
 ---
-title: 데이터 분석을 위한 기초 시각화(with Python)
+title: 데이터 분석을 위한 기초 시각화 with Python
 date: 2019-08-13 23:00:16
 tags:
 - visualization
