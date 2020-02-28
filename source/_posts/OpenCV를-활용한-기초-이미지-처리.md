@@ -47,7 +47,7 @@ plt.imshow(); plt.show()
 <img src="/image/opencv-image-1.png">
 
 위 이미지의 type 및 shape을 출력해보면 아래와 같다. 
-```pyhton
+```python
 image.type   # numpy.ndarray
 image.shape  # (2270, 3600)
 ```

@@ -126,6 +126,7 @@ Faster R-CNN은 R-CNN과 Fast R-CNN이 region proposal로 인한 과도한 연�
 
 <br/>
 
+---
 ## References
 paper
 - R-Rich feature hierarchies for accurate object detection and semantic segmentation(https://arxiv.org/abs/1311.2524)
