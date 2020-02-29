@@ -11,7 +11,7 @@ tags:
 ---
 Intro
 ---
-대표적인 자기 지도 학습인 Autoencoder와 Autoencoder에 LSTM cell을 적용해 시퀀스 적 학습이 가능한 LSTM Autoencoder에 대해 소개한다. 이후 다음 포스팅에는 LSTM Autoencoder를 통해 미래에 발생 할 고장이나 이상신호를 조기 예측하기 위한 Anomaly Detection 방안에 대해 소개할 것이다. 
+대표적인 자기 지도 학습인 Autoencoder와 Autoencoder에 LSTM cell을 적용해 시퀀스 학습이 가능한 LSTM Autoencoder에 대해 소개한다. 이후 다음 포스팅에는 LSTM Autoencoder를 통해 미래에 발생 할 고장이나 이상신호를 조기 예측하기 위한 Anomaly Detection 방안에 대해 소개할 것이다. 
 
 ---
 ## 1. Autoencoder?
@@ -26,14 +26,14 @@ Intro
 
 ><img src="/image/autoencoder-reconstruction-error.PNG">
 
-오토인코더가 입력을 재구성하기 때문에 출력을 재구성(reconstruction)이라고 부르며, 입력과 재구성된 출력과의 차이를 계산하여 **재구성 손실(reconstruction loss)**이라고 한다. 여기서 파라미터 (θ,φ)는 encoder에 입력되는 original input (x)과 디코더를 통해 출력 된 reconstruced input (f(g(x))이 같아지도록 학습한다. 
+오토인코더가 입력을 재구성하기 때문에 출력을 재구성(reconstruction)이라고 부르며, 입력과 재구성된 출력과의 차이를 계산하여 **재구성 손실(reconstruction loss)**이라고 한다. 여기서 파라미터 (θ,φ)는 encoder에 입력되는 original input (x)과 디코더를 통해 출력 된 reconstruced input (f(g(x))이 같아지도록 학습하며 업데이트 된다. 
 <br>
 
 ### 1.1. Stacked Autoencoder
 여러 개의 hidden 레이어를 가진 경우를 적층 오토인코더(stacked autoencoder)라고 한다. 아래 그림와 같이 레이어를 더 추가할 경우 오토인코더는 더 복작한 표현을 학습할 수 있게 되며 일반적으로 적층 오토인코더는 추가된 hideen 레이어를 기준으로 인코더와 디코더는 대칭 구조를 이룬다. 
 <img src="/image/stacked-autoencoder.png" width="650px">
 
-위와 같이 오토인코더가 완벽하게 대칭 구조를 이룰 때는 일반적으로 인코더와 디코더의 가중치를 묶는다. 이렇게 할 경우 모델의 가중치 수를 절반으로 줄여 훈련속도를 높이고 overfitting 위험을 줄일 수 있다. 
+위와 같이 오토인코더가 완벽하게 대칭 구조를 이룰 때는 일반적으로 인코더와 디코더의 가중치를 묶게 되는데 이렇게 할 경우 모델의 가중치 수를 절반으로 줄여 훈련속도를 높이고 overfitting 위험을 줄일 수 있다고 한다.
 
 <br>
 
