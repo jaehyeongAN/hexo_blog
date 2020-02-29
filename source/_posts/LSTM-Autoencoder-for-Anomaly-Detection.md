@@ -372,3 +372,12 @@ pred_y[-5:]  # [0, 0, 1, 0, 0]
 ```
 
 위 결과를 해석하기가 애매모호한 부분이 있지만, 대략 넓게 잡았을 때 최소 10분 이내에는 Break가 발생할 것 같다고 해석할 수 있을 것이다.
+
+
+---
+## References
+- [Extreme Rare Event Classification using Autoencoders in Keras](https://towardsdatascience.com/extreme-rare-event-classification-using-autoencoders-in-keras-a565b386f098)
+- [LSTM Autoencoder for Extreme Rare Event Classification in Keras](https://towardsdatascience.com/lstm-autoencoder-for-extreme-rare-event-classification-in-keras-ce209a224cfb)
+- [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)
+- [LSTM TimeDistributed layer](https://m.blog.naver.com/PostView.nhn?blogId=chunjein&logNo=221589624838&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
+- [How to connect LSTM layers in Keras, RepeatVector or return_sequence=True?](https://stackoverflow.com/questions/51749404/how-to-connect-lstm-layers-in-keras-repeatvector-or-return-sequence-true)
