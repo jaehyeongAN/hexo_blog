@@ -28,6 +28,11 @@ LSTM Autoencoder는 시퀀스(sequence) 데이터에 Encoder-Decoder LSTM 아키
 <br>
 
 ## Curve Shifting을 적용한 LSTM Autoencoder
+<img src="/image/lstm-autoencoder-through-curveshifting.png" width="800px">
+
+전체 프로세스는 위 아키텍처와 같다. 먼저 Curve Shifting을 통해 데이터의 시점을 변환해주고 normal 데이터만을 통해 LSTM Autoencoder 모델을 학습시키게 된다. 그 후 재구성 손실을 계산 후 Precision Recall Curve를 통해 normal/abnormal을 구분하기 위한 threshold를 지정하게 되고 이 threshold를 기준으로 마지막으로 테스트 셋의 재구성 손실을 분류하여 t+n 시점을 예측하게 된다. 
+각 부분에 대해 아래에서 좀 더 상세히 살펴보자.
+
 ### 1. Curve Shifting
 비정상 신호를 탐지하기 위해서는 비정상 신호가 들어오기 전에 즉, 뭔가 고장 혹은 결함이 발생하기 전에 미리 예측을 해야만 한다. 그렇기 때문에 단순히 현재 시점의 error를 계산하여 비정상 신호를 탐지하는 것은 이미 고장이 발생한 후 예측하는 것과 다름이 없기 때문에 **데이터에 대한 시점 변환**이 꼭 필요하다. 
 
