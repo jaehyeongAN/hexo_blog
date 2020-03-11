@@ -141,7 +141,7 @@ array([[[0.16683361],
 <br>
 
 ### 2.3 Composite LSTM Autoencoder
-Reconstruction과 Prediction 모델을 통합한 모델이다. 모델의 통합을 위해 예제에서는 [keras functional api](http://localhost:4000/2019/03/26/KERAS-FUNCTIONAL-API-MULTI-INPUT-%EB%AA%A8%EB%8D%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)를 활용하였으며, 결과적으로 출력 시 reconstruction결과와 prediction결과가 함께 출력된다.
+Reconstruction과 Prediction 모델을 통합한 모델이다. 모델의 통합을 위해 예제에서는 [keras functional api](https://jaehyeongan.github.io/2019/03/26/KERAS-FUNCTIONAL-API-MULTI-INPUT-%EB%AA%A8%EB%8D%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)를 활용하였으며, 결과적으로 출력 시 reconstruction결과와 prediction결과가 함께 출력된다.
 ```python
 # define input sequence
 seq_in = np.array([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
