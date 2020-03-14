@@ -6,7 +6,7 @@
     "version": "3.9.0"
   },
   "dependencies": {
-    "acorn": "^6.1.1",
+    "acorn": "^6.4.1",
     "acorn-jsx": "^5.0.1",
     "hexo": "^3.9.0",
     "hexo-auto-canonical": "^0.1.1",
