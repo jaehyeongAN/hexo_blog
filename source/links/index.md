@@ -61,7 +61,7 @@ date: 2018-06-29 13:11:18
 
 #### Boosting Model
 - [Bagging과 Boosting 그리고 Stacking](https://swalloow.github.io//bagging-boosting)
-- [https://medium.com/@pushkarmandot/https-medium-com-pushkarmandot-what-is-lightgbm-how-to-implement-it-how-to-fine-tune-the-parameters-60347819b7fc](https://medium.com/@pushkarmandot/https-medium-com-pushkarmandot-what-is-lightgbm-how-to-implement-it-how-to-fine-tune-the-parameters-60347819b7fc)
+- [What is LightGBM, How to implement it? How to fine tune the parameters?](https://medium.com/@pushkarmandot/https-medium-com-pushkarmandot-what-is-lightgbm-how-to-implement-it-how-to-fine-tune-the-parameters-60347819b7fc)
 - [LIGHTGBM 주요 파라미터 정리](https://gorakgarak.tistory.com/1285)
 <br>
 
