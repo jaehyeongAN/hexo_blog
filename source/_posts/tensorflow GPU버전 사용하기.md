@@ -85,7 +85,7 @@ tf.__version__
 
 tensorflow가 GPU버전으로 잘 설치되었고, 나의 GPU를 잘 인식하고 있는지 확인하고 싶다면 아래와 같은 코드를 통해 확인할 수 있다. tensorflow가 인식하는 로컬 device 목록을 보여주게 된다.
 ```python
-from tensorflow.pyhton.client import device_lib
+from tensorflow.python.client import device_lib
 device_lib.list_local_devices()
 ```
 
