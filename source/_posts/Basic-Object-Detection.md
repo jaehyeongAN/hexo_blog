@@ -60,7 +60,7 @@ Intro
 ### Selective Search
 - Region Proposal의 대표적인 기법
 - 컬러(color), 무늬(texture), 크기(size), 형태(shape) 등에 따라 유사한 region들을 계층적으로 그룹핑 하는 방법
-<img style="padding-left: 50px" src="/image/selective-search.png" width="600px">
+<img src="/image/selective-search.png" width="600px">
 <br>
 
 **Selective Search 수행 프로세스**
@@ -73,9 +73,9 @@ Intro
 ### IoU(Intersection over Union)
 모델이 예측한 bounding box와 실제 ground truth box가 얼마나 정확하게 겹치는지를 측정하는 지표
 - 아래와 같은 지표로 계산 되며
-<img style="padding-left: 50px" src="/image/IoU.jpg" width="500px">
+<img src="/image/IoU.jpg" width="500px">
 - 100%로 정확하게 겹쳐질 때의 값은 1이 됨
-<img style="padding-left: 50px" src="/image/iou-score.png" width="450px">
+<img src="/image/iou-score.png" width="450px">
 
 >IoU 값에 따라 detection 예측 성공 결정
 - object detection에서 개별 object에 대한 검출 예측이 성공하였는지에 대한 여부를 IoU를 통해 결정
@@ -84,7 +84,7 @@ Intro
 
 ### NMS(Non Max Suppression)
 object detection 시 최대한 object를 놓치지 않기 위해 많은 bounding box를 찾게 되는데, 이렇게 detected 된 수많은 bounding box 중 비슷한 위치에 있는 box를 제거하고 가장 적합한 box를 선택하는 기법 
-<img style="padding-left: 50px" src="/image/nms.png" width="700px">
+<img src="/image/nms.png" width="700px">
 <br>
 
 **NMS 수행 프로세스**
@@ -99,13 +99,13 @@ object detection 시 최대한 object를 놓치지 않기 위해 많은 bounding
 ## Object Detection 성능 평가
 ### mAP(mean Average Precision)
 - 실제 Object가 detected된 재현율(recall)의 변화에 따른 정밀도(precision)의 값을 평균한 성능 수치
-	>**정밀도와 재현율**
-	- 정밀도는 모델이 positive라고 예측한 대상 중 예측 값이 실제 positive 값과 얼마나 일치하는지에 대한 비율(즉, 예측한 object가 실제 object들과 얼마나 일치하는지)
-	- 재현율은 실제 positive 값 중 모델이 얼마나 실제 값을 positive라고 예측했는지에 대한 비율(즉, 실제 object를 얼마나 빠드리지 않고 잘 예측했는지)
-	- Precision Recall Trade-off : 정밀도와 재현율은 상호 보완적인 관계이므로 어느 한쪽이 높아지면 다른 쪽이 낮아지게 됨
-	- Precision-Recall Curve : confidence threshold의 변화에 따른 정밀도와 재현율의 변화 곡선, 이 곡선의 아랫부분 면적을 AP(Averge Precision, 평균 정밀도)라고 함
-	<img style="padding-left: 50px" src="/image/average-precision.png" width="300px">
+>**정밀도와 재현율**
+ - 정밀도는 모델이 positive라고 예측한 대상 중 예측 값이 실제 positive 값과 얼마나 일치하는지에 대한 비율(즉, 예측한 object가 실제 object들과 얼마나 일치하는지)
+ - 재현율은 실제 positive 값 중 모델이 얼마나 실제 값을 positive라고 예측했는지에 대한 비율(즉, 실제 object를 얼마나 빠드리지 않고 잘 예측했는지)
+ - Precision Recall Trade-off : 정밀도와 재현율은 상호 보완적인 관계이므로 어느 한쪽이 높아지면 다른 쪽이 낮아지게 됨
+ - Precision-Recall Curve : confidence threshold의 변화에 따른 정밀도와 재현율의 변화 곡선, 이 곡선의 아랫부분 면적을 AP(Averge Precision, 평균 정밀도)라고 함
+ <img src="/image/average-precision.png" width="300px">
 
 - AP는 하나의 object에 대한 성능 수치이며, mAP는 여러 object들의 AP를 평균한 값을 의미
-<img style="padding-left: 50px" src="/image/map.png" width="500px">
+<img src="/image/map.png" width="500px">
 <br>
