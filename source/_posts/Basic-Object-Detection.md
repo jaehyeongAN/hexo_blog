@@ -70,6 +70,63 @@ Intro
 
 <br>
 
+#### Python을 통한 Selective Search 구현
+- <code>pip install selectivesearch</code> 를 통해 라이브러리 설치 
+
+```python
+import selectivesearch
+import cv2
+
+img = cv2.imread('./image/test.jpg') # 이미지 로드 
+img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+plt.figure(figsize=(8, 8))
+plt.imshow(img_rgb)
+plt.show()
+```
+<img src="/image/audrey_original.png" width="250px"/>
+
+```python
+#selectivesearch.selective_search()는 이미지의 Region Proposal정보를 반환 
+_, regions = selectivesearch.selective_search(img_rgb, 
+                                              scale=100, # bounding box scale 
+                                              min_size=2000) # rect의 최소 사이즈
+
+regions[:5]
+```
+```
+[{'rect': (0, 0, 58, 257), 'size': 7918, 'labels': [0.0]},
+ {'rect': (16, 0, 270, 50), 'size': 5110, 'labels': [1.0]},
+ {'rect': (284, 0, 90, 420), 'size': 6986, 'labels': [2.0]},
+ {'rect': (59, 14, 262, 407), 'size': 3986, 'labels': [3.0]},
+ {'rect': (62, 17, 256, 401), 'size': 5282, 'labels': [4.0]}]
+```
+반환된 regions 변수는 리스트 타입으로 세부 원소로 딕셔너리를 가지고 있음. 
+* rect 키값은 x,y 시작 좌표와 너비, 높이 값을 가지며 이 값이 Detected Object 후보를 나타내는 Bounding box임. 
+* size는 Bounding box의 크기
+* labels는 해당 rect로 지정된 Bounding Box내에 있는 오브젝트들의 고유 ID
+* 아래로 내려갈 수록 특성이 비슷한 것들이 합쳐지고, 너비와 높이 값이 큰 Bounding box이며 하나의 Bounding box에 여러개의 오브젝트가 있을 확률이 커짐. 
+
+```python
+# Bounding Box 시각화 
+green_rgb = (125, 255, 51)
+img_rgb_copy = img_rgb.copy()
+for rect in cand_rects:
+    
+    left = rect[0]
+    top = rect[1]
+    # rect[2], rect[3]은 너비와 높이이므로 우하단 좌표를 구하기 위해 좌상단 좌표에 각각을 더함. 
+    right = left + rect[2]
+    bottom = top + rect[3]
+    
+    img_rgb_copy = cv2.rectangle(img_rgb_copy, (left, top), (right, bottom), color=green_rgb, thickness=2)
+    
+plt.figure(figsize=(8, 8))
+plt.imshow(img_rgb_copy)
+plt.show()
+```
+<img src="/image/audrey-bounding.png" width="250px"/>
+<br>
+
 ### IoU(Intersection over Union)
 모델이 예측한 bounding box와 실제 ground truth box가 얼마나 정확하게 겹치는지를 측정하는 지표
 - 아래와 같은 지표로 계산 되며
@@ -80,6 +137,30 @@ Intro
 >IoU 값에 따라 detection 예측 성공 결정
 - object detection에서 개별 object에 대한 검출 예측이 성공하였는지에 대한 여부를 IoU를 통해 결정
 - 일반적으로 PASCAL VOC Challenge에서 는 IoU가 0.5이상이면 예측 성공했다고 판단
+
+<br>
+
+#### Python을 통한 IoU 계산
+```python
+def compute_iou(cand_box, gt_box):
+    # Calculate intersection areas
+    x1 = np.maximum(cand_box[0], gt_box[0])
+    y1 = np.maximum(cand_box[1], gt_box[1])
+    x2 = np.minimum(cand_box[2], gt_box[2])
+    y2 = np.minimum(cand_box[3], gt_box[3])
+    
+    intersection = np.maximum(x2 - x1, 0) * np.maximum(y2 - y1, 0) # width * height (x2에서 x1을 뺀 값이 width, y2에서 y1을 뺀 값이 height 이므로)
+    
+    cand_box_area = (cand_box[2] - cand_box[0]) * (cand_box[3] - cand_box[1]) # width * height
+    gt_box_area = (gt_box[2] - gt_box[0]) * (gt_box[3] - gt_box[1]) # width * height
+    union = cand_box_area + gt_box_area - intersection # 실제box와 예측box의 합에서 intersection을 뺌
+    
+    iou = intersection / union
+    return iou
+```
+- 실제 bounding box와 후보 bounding box가 있을 때, 둘 중에서  x1과 y1좌표는 max값, x2와 y2좌표는 min값을 선택하게 되면 그 좌표가 Intersection area가 되며
+- 두 개의 box를 더한 후 intersection을 빼준 값이 Union area 
+- 마지막으로 intersection을 union으로 나누어 주면 IoU값을 얻을 수 있음 
 <br>
 
 ### NMS(Non Max Suppression)
@@ -109,3 +190,15 @@ object detection 시 최대한 object를 놓치지 않기 위해 많은 bounding
 - AP는 하나의 object에 대한 성능 수치이며, mAP는 여러 object들의 AP를 평균한 값을 의미
 <img src="/image/map.png" width="500px">
 <br>
+
+### Image Resolution / FPS / Detection 성능 상관 관계
+<img src="/image/resolution-detection-score.png" width="400px">
+일반적으로 이미지 해상도(Image Resolution)가 높을 수록 Detection성능이 좋아지지만 이미지를 처리하는 시간(FPS)이 오래걸림
+- High Resolution -> High Detection Score -> Low FPS
+- Low Resolution -> Low Detection Score -> High FPS
+<br>
+
+## Object Detection을 위한 주요 데이터 셋
+- [Pascal-VOC](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) - XML format, 20개의 오브젝트 카테고리 
+- [MS-COCO](http://cocodataset.org/#home) - json format, 80개의 오브젝트 카테고리
+- [Google Open Images](https://opensource.google/projects/open-images-dataset) - csv format, 600개의 오브젝트 카테고리
