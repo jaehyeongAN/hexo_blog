@@ -1,5 +1,5 @@
 ---
-title: PEGASUS
+title: PEGASUS:Pre-training with Extracted Gap-sentences for Abstractive 논문 리뷰
 date: 2020-08-01 20:05:03
 tags:
 - nlp
@@ -166,6 +166,7 @@ PAGASUS-large 모델을 2000 steps, 256 batch-size, 0.0005 learning-rate로 fine
 인 것 같다. 그런데 여기서 의문이 들었던 점은 사람의 요약본과 성능비교를 하는데 있어서 PEGASUS-large모델이 대부분 더 좋은 성능을 보였는데, 과연 human evaluation이 객관적으로 이루어졌는지 의문이들었다. 각 task마다 3명의 평가자에 의해 1-5점으로 평가를 하였다고 하는데 과연 일반화할 수 있을까?
 
 여하튼, 최근 text summarization분야를 관심있게 보고 있었는데, summarization task에 최적화된 모델이 나왔다는 점에서 흥미가 갔던 논문이었다.
+
 ---
 ## Reference
 - https://arxiv.org/pdf/1912.08777.pdf
