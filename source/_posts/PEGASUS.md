@@ -1,5 +1,5 @@
 ---
-title: PEGASUS:Pre-training with Extracted Gap-sentences for Abstractive 논문 리뷰
+title: PEGASUS:Pre-training with Extracted Gap-sentences for Abstractive Summarization 논문 리뷰
 date: 2020-08-01 20:05:03
 tags:
 - nlp
@@ -35,7 +35,7 @@ Abstractive방식이 Extractive방식보다 훨씬 어려운 난이도의 task�
 이제 아래에서 가장 최근 Abstractive Summarizaion 논문으로 등장한 PEGASUS에 대해 알아보자.
 <br/>
 
-# Pre-training with Extracted Gap-sentences for Abstractive Summarization
+# PEGASUS: Pre-training with Extracted Gap-sentences for Abstractive Summarization
 
 ## Abstract
 최근 대량의 text corpora로 self-supervised된 pre-training Transfomers 모델들이 text summarization을 포함한 fine-tuning downstream NLP task에서 좋은 성능을 보이고 있다. 하지만, Abstractive Text Summarization의 목적에 맞게 pre-training된 모델은 찾아보기 힘들고, 더욱이 다양한 domain을 커버할만 한 체계적인 평가 방법도 부족한 상황이다. 
