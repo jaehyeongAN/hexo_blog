@@ -47,6 +47,8 @@ PEGASUS 모델은 12개의 downstream summarization tasks로부터 ROUGE score�
 
 ## The Basic architecture of PEGASUS
 <img src="/image/PEGASUS-architecture.PNG" width="800">
+<img src="/image/pegasus-transformer.gif" width="800">
+
 
 PEGASUS는 기본적으로 encoder-decoder기반의 Transformer구조를 하고 있으며, 기존 MLM(Masked Language Model)과 유사하게 Input text의 일부를 masking하여 Encoder의 input으로 보내게 된다. 하지만 기존 MLM과 다른 점은 바로 Sentence 자체를 masking한다는 점이다. 
 기존 MLM 모델들은 token 단위로 masking하여 masked token을 예측하는 방식으로 학습을 진행하였지만, PEGASUS는 Input Document로부터 Sentence 단위로 Masking을 한 후 남은 Sentence를 기반으로 masked sentence를 예측하는 방식으로 학습된다. 논문에서는 이러한 방식을 **Gap-Sentences-Generation(GSG)**라고 말하고 있다.
