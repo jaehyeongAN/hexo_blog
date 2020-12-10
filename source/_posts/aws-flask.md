@@ -22,58 +22,58 @@ Intro
 ## 1. AWS EC2 가입 및 인스턴스 생성 
 우선 [AWS Management Consol](https://ap-northeast-2.console.aws.amazon.com/console/home?region=ap-northeast-2#)로 이동 후 가입이 되어있지 않다면 가입 후 로그인을 한다. (가입 시 region을 Seoul로 설정할 것)
 서비스 검색을 통해 EC2를 선택한다. 
-<img src="/image/aws-mc.png" width="1000" height="400"/>
+<img src="/image/aws-mc.png" width="1000"/>
 
 EC2 대시보드에서 인스턴스 생성 아래의 **인스턴스 시작** 버튼을 클릭
-<img src="/image/aws-instance.png" width="1000" height="400"/>
+<img src="/image/aws-instance.png" width="1000"/>
 
 AMI로는 기업용이 아니니 개인 개발용으로 편한 **Ubuntu Linux 18.04** 버전을 사용하며,
 무료 서버 이용이 가능한 **프리 티어(Free Tier)**로 서버를 생성한다. 
-<img src="/image/aws-ami.png" width="1000" height="400"/>
-<img src="/image/aws-free.png" width="1000" height="400"/>
-<img src="/image/aws-start.png" width="1000" height="400"/>
+<img src="/image/aws-ami.png" width="1000"/>
+<img src="/image/aws-free.png" width="1000"/>
+<img src="/image/aws-start.png" width="1000"/>
 
 위 이미지에서 시작 버튼을 누를 경우 키 페어를 설정하는 메시지가 나타나는데 이 키 페어는 말 그대로 생성한 웹 서버에 추후 접속할 때 꼭 필요한 키 역할을 한다. **'새 키 페어 생성'**을 선택하고 **'키 페어 이름'**을 본인 취향에 맞게 설정 후 **'키 페어 다운로드'**를 선택한다. (이 키 페어는 추후 서버 접속 시 꼭 필요하므로 본인 개발 폴더에 잘 보관해둔다.)
 키 페어를 다운로드하여 인스턴스 시작 버튼이 활성화되면 버튼을 클릭하여 진행한다. 
-<img src="/image/aws-keypair.png" width="1000" height="400"/>
+<img src="/image/aws-keypair.png" width="1000"/>
 
 **인스턴스 보기**를 선택
-<img src="/image/aws-status.png" width="1000" height="400"/>
+<img src="/image/aws-status.png" width="1000"/>
 
 여기까지가 진행하게 되면 인스턴스가 아래와 같이 생성된다. 
-<img src="/image/aws-instance-view.png" width="1000" height="400"/>
+<img src="/image/aws-instance-view.png" width="1000"/>
 <br>
 
 ## 2. Key Pair 권한 설정 변경
 전 과정에서 인스턴스를 생성하면서 Key Pair를 같이 다운로드 하였을 것이다. 하지만 접속하기 위해서는 이 권한 설정을 변경해줘야만 접속이 가능하다. 
 
 우선 다운받은 키페어를 우클릭하여 **[속성]-[보안]** 탭으로 이동 후 **[고급]**을 클릭한다. 
-<img src="/image/aws-admin.png" width="700" height="400"/>
+<img src="/image/aws-admin.png" width="700"/>
 
 아래와 같은 화면에서,
 **[상속 사용 안 함]**을 클릭 후, 팝업 메시지에서 **'상속된 사용 권한을 이 개체에 대한 명시적 사용 권한으로 변환합니다'**를 선택
-<img src="/image/aws-admin-remove1.png" width="700" height="400"/>
-<img src="/image/aws-admin-remove2.png" width="700" height="400"/>
+<img src="/image/aws-admin-remove1.png" width="700"/>
+<img src="/image/aws-admin-remove2.png" width="700"/>
 
 이후 아래와 같이 Administrators를 제외한 모든 사용 권한 항목을 제거한다
-<img src="/image/aws-admin-remove3.png" width="700" height="400"/>
+<img src="/image/aws-admin-remove3.png" width="700"/>
 <br>
 
 ## 3. 보안 그룹 설정
 인스턴스 화면으로 돌아와 **Flask 웹 서버 포트 번호인 5000번 포트**를 열어 주기 위해 보안 그룹을 설정한다. 
-<img src="/image/aws-security.png" width="1000" height="400"/>
+<img src="/image/aws-security.png" width="1000"/>
 
 [인바운드] 탭에서 [편집]을 클릭 후 [규칙 추가]를 하여 아래와 같이 5000번 포트를 설정한다.
-<img src="/image/aws-security2.png" width="1000" height="400"/>
+<img src="/image/aws-security2.png" width="1000"/>
 
 ## 4. 인스턴스 접속하기
 다시 인스턴스 화면으로 돌아와 아래 화면에서 생성한 인스턴스를 선택 후 연결 버튼을 클릭한다. 
 연결 방법으로는 **'독립 실행형 SSH 클라이언트'**로 선택하고, 아래 ssh 명령어를 복사한다. 
-<img src="/image/aws-connect.png" width="1000" height="400"/>
-<img src="/image/aws-connect2.png" width="1000" height="400"/>
+<img src="/image/aws-connect.png" width="1000"/>
+<img src="/image/aws-connect2.png" width="1000"/>
 
 명령프롬프트(CMD)를 관리자 권한으로 실행 후 다운 받은 Key Pair가 있는 위치로 이동한다. 그 후 위에서 복사한 SSH 명령어를 복사하여 우분투 리눅스 인스턴스에 접속한다. 
-<img src="/image/aws-ubuntu.png" width="800" height="400"/>
+<img src="/image/aws-ubuntu.png" width="800"/>
 
 우선 파이썬 라이브러리 도구인 pip 및 java jdk 등을 설치해주고, 본인의 파이썬 코드가 수행되기 위한 라이브러리를 설치해준다. 
 ```linux
@@ -93,12 +93,12 @@ $ sudo apt install scipy
 ```
 
 이후 개발한 flask를 웹 서버로 clone하여 해당 경로로 이동 후 웹 서버를 실행해준다.
-<img src="/image/aws-ubuntu2.png" width="650" height="400"/>
-<img src="/image/aws-ubuntu3.png" width="650" height="400"/>
+<img src="/image/aws-ubuntu2.png" width="650"/>
+<img src="/image/aws-ubuntu3.png" width="650"/>
 
 이제 웹 서버가 실행 중이니 퍼블릭 IP로 접속이 가능하다. 아래 인스턴스 화면에서 **'IPv4 퍼블릭 IP'** 주소를 복사 후 5000번 포트번호( http://54.180.150.154:5000/ )로 접속한다.
 
-<img src="/image/aws-dl-flask.PNG" width="1000" height="400"/>
+<img src="/image/aws-dl-flask.PNG" width="1000"/>
 고정 IP에서 서버가 잘 실행되고 있다.
 <br>
 

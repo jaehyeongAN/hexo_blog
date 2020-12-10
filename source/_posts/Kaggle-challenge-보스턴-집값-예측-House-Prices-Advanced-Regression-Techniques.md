@@ -14,7 +14,7 @@ tags:
 Intro
 ---
 캐글의 고전적인 문제이며 머신러닝을 공부하는 사람이라면 누구나 한번쯤 다뤄봤을 Boston house price Dataset을 통해 regression하는 과정을 소개하려 한다. 정식 competition 명칭은 ['House Prices: Advanced Regression Techniques'](https://www.kaggle.com/c/house-prices-advanced-regression-techniques)이며, 현재 누구나 submission을 제출할 수 있다. 
-<img src="/image/kaggle_boston_house.JPG" width="700" height="400"> 
+<img src="/image/kaggle_boston_house.JPG" width="700"> 
 
 위에서 말했듯이 boston house price데이터셋은 왠만한 머신러닝 공부하는 사람들은 한번쯤 봤을 것이며, 대부분의 머신러닝 입문 교재에도 꼭 한번씩은 소개가 되는 데이터셋이다. 하지만, 대부분의 교재나 강의에서는 이미 feature engineering을 거친 아주 잘 정형화 된(모델에 바로 적용 가능한)데이터셋을 사용하며 데이터 처리 과정은 생략하는 경우가 대부분인 것 같다. 하지만 boston house price 데이터셋은 **무려 81개의 다양한 칼럼 변수**를 가지고 있으며, 각 칼럼 특성에 맞는 전처리가 필요하다. 
 
@@ -253,7 +253,7 @@ top_corr_features
 plt.figure(figsize=(13,10))
 g = sns.heatmap(train_df[top_corr_features].corr(),annot=True,cmap="RdYlGn")
 ```
-<img src="/image/output_6_0.png" width="700" height="400"> 
+<img src="/image/output_6_0.png" width="700"> 
 
 
 ```python
@@ -1458,7 +1458,7 @@ print(grid_search.best_estimator_)
 
 # 11. Prediction & Score
 - 검증을 위해 **Mean Absolute Error(MAE)** 지표를 활용하였다. MSE를 활용할 경우 error값이 클 경우 그에 제곱된 값이 출력되기 때문에 값이 너무 커져 보기 불편하다는 단점이 있다. 
-<img src="/image/mae.png" width="400" height="400"> 
+<img src="/image/mae.png" width="400"> 
 - 검증 결과 validation mae 값이 14,000정도인데, 워낙 집 가격에 대한 값의 범위가 넓기 때문에 이 정도 error값은 심각한 정도는 아니며 납득할만한 수준이라고 할 수 있다.
 
 ```python
@@ -1486,7 +1486,7 @@ plt.ylabel('Prices')
 plt.legend()
 ```
 
-<img src="/image/output_32_1.png" width="1050" height="400"> 
+<img src="/image/output_32_1.png" width="1050"> 
 
 <br/>
 

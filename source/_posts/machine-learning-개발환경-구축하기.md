@@ -40,7 +40,7 @@ Miniconda
 Install Miniconda(+python)
 ---
 우선 Miniconda 홈페이지를 가면 설치가 가능합니다.
-<img src="/image/miniconda-ori.PNG" width="1000" height="1000">
+<img src="/image/miniconda-ori.PNG" width="1000">
 
 ~~위 링크에서는 현재 python 2.7버전과 3.7버전을 제공하고 있습니다. 최신버전이므로 다운받으셔도 무방하지만 한 가지 고려할 것이 있습니다. 만약 추후 deep learning을 하고자 한다면 3.7버전 보다 아래 버전을 사용하시는 것이 좋습니다. tensorflow가 아직 3.7버전에 호환되지 않거든여ㅜㅜ~~
 ~~그래서 [Miniconda installer archive](https://repo.continuum.io/miniconda/)에서 python3.6버전으로 되어있는 것을 찾으시면 됩니다.저는 안정성 문제를 고려하여 [Miniconda2-4.5.4-Windows-x86_64.exe](https://repo.continuum.io/miniconda/Miniconda2-4.5.4-Windows-x86_64.exe)을 이용하고 있습니다.~~
@@ -49,19 +49,19 @@ Install Miniconda(+python)
 
 
 다운받은 후 설치파일을 더블클릭하면 아래와 같은 화면이 나타납니다.
-<img src="/image/miniconda-install.PNG" width="600" height="600">
+<img src="/image/miniconda-install.PNG" width="600">
 
 이후, next버튼을 눌러 설치를 진행하시면 됩니다. 
 
 설치가 완료되면 설치된 경로에 아래와 같이 miniconda가 깔립니다.(동시에 python도 같은 경로에 설치가 됩니다.)
-<img src="/image/miniconda-path.PNG" width="600" height="600">
+<img src="/image/miniconda-path.PNG" width="600">
 <p></p>
 
 Enroll System path
 ---
 자, 이제 miniconda 및 python을 설치하였으니 환경변수에 등록해줘야 합니다. java jdk 등록하는거와 같습니다.
 우선 환경변수에 등록해야 하는 path는 아래와 같습니다.(본인이 설치한 path에 맞게 넣어주시면 됩니다.)
-<img src="/image/miniconda-syspath.PNG" width="500" height="500">
+<img src="/image/miniconda-syspath.PNG" width="500">
 
 - C:\Users\nonam\Miniconda3
 - C:\Users\nonam\Miniconda3\python.exe
@@ -70,7 +70,7 @@ Enroll System path
 
 anaconda 및 miniconda를 설치하게 되면 anaconda prompt와 같은 콘솔창이 함께 설치됩니다. 
 검색창에서 anaconda prompt를 실행하여 아래와 같이 python이 실행된다면 설치가 완료된 것입니다.
-<img src="/image/anaconda-prompt.PNG" width="800" height="800">
+<img src="/image/anaconda-prompt.PNG" width="800">
 <p></p>
 
 Install Jupyter lab
@@ -84,7 +84,7 @@ anaconda prompt를 열어 아래와 같이 명령어(jupyter lab 및 해당 kern
 ```
 
 실행이 되면 http://localhost:8888/ 주소로 jupyter lab이 실행되며 아래와 같은 화면이 나타납니다.
-<img src="/image/jupyter.PNG" width="900" height="900">
+<img src="/image/jupyter.PNG" width="900">
 <p></p>
 
 Outro

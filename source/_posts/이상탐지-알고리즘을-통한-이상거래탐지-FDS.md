@@ -13,7 +13,7 @@ tags:
 Intro
 ---
 금융거래 중 부정하게 사용되는 거래를 부정 거래라고 합니다. 그 중 신용카드 위변조, 도용, 부정거래에 대한 비율은 해마다 증가하고 있는 추세입니다. 아래 표는 연도별 신용카드 부정사용 금액.
-<img src="/image/creditcard_main.jpg" width="550" height="600">
+<img src="/image/creditcard_main.jpg" width="550">
 
 따라서, 최근에는 국내 주요 은행들은 **FDS(Fraud Detection System)**을 도입하여 이러한 부정거래를 막기위해 노력하고 있지만 주로 룰(Rule) 기반으로 사람에 의해 이루어지기 때문에 실시간으로 정확한 탐지가 어려운 상황이라고 합니다. 
 
@@ -34,14 +34,14 @@ import pandas as pd
 df = pd.read_csv('./input/creditcard.csv')
 df.head(10)
 ```
-<img src="/image/creditcard_load.JPG" width="1000" height="600">
+<img src="/image/creditcard_load.JPG" width="1000">
 위 데이터 셋은 개인정보 비식별화처리로 인해 칼럼정보를 알 수 없으며, 데이터 또한 스케일(scale) 및 PCA(principal component analysis) 처리 되어있습니다.
 총 31개의 칼럼으로 이루어져 있고, **Time, Amount, Class**를 제외한 모든 칼럼은 **비식별화**처리 되어있습니다.
 
 ```python
 df.info()
 ```
-<img src="/image/creditcard_info.JPG" width="300" height="600">
+<img src="/image/creditcard_info.JPG" width="300">
 데이터는 총 284,807건이며 null값은 존재하지 않는 정형 데이터 입니다.
 <br/>
 
@@ -60,7 +60,7 @@ ax2.set_title('Normal')
 plt.xlabel('Time(in Seconds)'); plt.ylabel('Number of Transactions')
 plt.show()
 ```
- <img src="/image/time.png" width="800" height="600">
+ <img src="/image/time.png" width="800">
 음.. 대체적으로 정상 거래의 경우 시간에 따라 주기적인 반면 부정 거래의 경우 불규칙한 특성을 보입니다.
 <br/>
 
@@ -81,7 +81,7 @@ plt.ylabel('Number of Transactions')
 plt.yscale('log')
 plt.show()
 ```
- <img src="/image/amount.png" width="750" height="600">
+ <img src="/image/amount.png" width="750">
 정상 거래의 경우 다양한 금액대에서 발생되지만, 부정 거래의 경우 적은 금액에서 주로 발생하는 것 같습니다.
 <br/>
 
@@ -101,18 +101,18 @@ for cnt, col in enumerate(df[v_features]):
     plt.show()
 ```
 
- <img src="/image/col.png" width="750" height="600">
+ <img src="/image/col.png" width="750">
 <br/>
 
 ## 3. Isolation Forest 
 이상탐지 알고리즘으로는 [**Isolation Forest**](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html) 알고리즘을 이용하였습니다. Isolation Forest 는 Tree 기반으로 데이터를 나누어 데이터의 관측치를 고립시키는 알고리즘입니다. 이상 데이터의 경우 root node와 가까운 depth를 가지고, 정상 데이터의 경우 tree의 말단 노드에 가까운 depth를 가집니다. 
-<img src="/image/isolation.jpg" width="650" height="600">
+<img src="/image/isolation.jpg" width="650">
 <br/>
 
 ## 4. 이상 탐지 알고리즘 적용
 Isolation Forest 알고리즘은 현재 scikit-learn에서 제공되고 있으며, [링크](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html)를 통해 다큐먼트를 확인하실 수 있습니다.
 Isolation Forest는 이상치 점수(outlier score)를 제공합니다. 정상 거래/ 부정 거래에 대한 이상치 점수는 아래와 같습니다.
-<img src="/image/outlierscore.png" width="800" height="600">
+<img src="/image/outlierscore.png" width="800">
 위의 분포를 보았을 때, 정상 / 부정 거래 간 비율이 다르게 나타나는 것을 확인할 수 있습니다. 
 <br/>
 
@@ -169,9 +169,9 @@ ax.set_zlabel('pcomp 3')
 plt.show()
 ```
 - 2차원 시각화
-<img src="/image/2d.png" width="650" height="600">
+<img src="/image/2d.png" width="650">
 - 3차원 시각화
-<img src="/image/3d.png" width="650" height="600">
+<img src="/image/3d.png" width="650">
 <br/>
 
 ## 예측 성능

@@ -18,22 +18,22 @@ Linear Regression(선형 회귀)
 ---
 회귀의 경우 선형 모델을 위한 일반화된 예측 함수는 아래와 같다. 
 
-<img src="/image/linear_.JPG" width="500" height="400">
+<img src="/image/linear_.JPG" width="500">
 
 위 식에서 x[0]부터 x[n]까지는 하나의 데이터 포인트에 대한 특성을 나타내며(특성의 개수는 n+1), w와 b는 모델이 학습할 파라미터이다.그리고 y^은 모델이 만들어낸 예측값이다.
 위 식은 특성이 하나인 데이터 셋이라면 아래와 같이 1차 방정식으로 단순하게 나타낼 수 있다. 
 
-<img src="/image/linear_2.JPG" width="130" height="400">
+<img src="/image/linear_2.JPG" width="130">
 
 w[0]는 기울기이고, b는 y축과 만나는 절편(또는 편향)이다. 특성이 많아지면 w는 각 특성에 해당하는 기울기를 모두 가진다. 
 
-<img src="/image/linear_regression.png" width="400" height="400">
+<img src="/image/linear_regression.png" width="400">
 [선형 회귀]
 
 <p></p>
 선형 회귀는 가장 간단하고 오래된 회귀용 선형 알고리즘이다. 선형 회귀는 예측 값 y^과 실제 값 y 사이의 평균제곱오차(mean squared error)를 최소화 하는 파라미터 w와 b를 찾는다. 평균제곱 오차는 예측값(y^)과 실제값(y)의 차이를 제곱하여 더한 후에 샘플 개수로 나눈 값이다.
 
-<img src="/image/mse.JPG" width="350" height="400">
+<img src="/image/mse.JPG" width="350">
 
 <p></p>
 아래는 scikit-learn의 LinearRegression을 통해 boston house price를 통한 집 값 예측을 수행하는 코드이다.
@@ -69,7 +69,7 @@ m = 100
 X = 6 * np.random.rand(m,1)-3
 y = 0.5*X**2+X+2+np.random.randn(m,1)
 ```
-<img src="/image/polynomial_data.png" width="400" height="400">
+<img src="/image/polynomial_data.png" width="400">
 
 위와 같은 데이터가 non-linear 데이터인데 선형회귀 모델을 위 데이터에 적용해보면, 
 ```python
@@ -77,7 +77,7 @@ lin_reg = LinearRegression()
 lin_reg.fit(X, y)
 pred = lin_reg.predict(X)
 ```
-<img src="/image/predict_poly.JPG" width="400" height="400">
+<img src="/image/predict_poly.JPG" width="400">
 
 위 그림과 같이 데이터의 비선형적 패턴을 전혀 파악하지 못한 채 1차 직선으로만 예측을 하게 된다.
 이제 이러한 비선형 데이터를 선형 예측하기 위해 위 데이터에 각 특성을 제곱하여 새로운 특성을 추가한다. 
@@ -91,12 +91,12 @@ lin_reg = LinearRegression()
 lin_reg.fit(X_poly, y)
 pred = lin_reg.predict(X_poly)
 ```
-<img src="/image/poly_predict.png" width="400" height="400">
+<img src="/image/poly_predict.png" width="400">
 데이터에 새로운 다항 특성을 추가하였을 때 선형 모델이 데이터의 패턴을 파악하여 예측하는 특성을 보여주고 있다. 
 위 데이터의 실제 함수는,
-<img src="/image/p_li_1.JPG" width="230" height="400">
+<img src="/image/p_li_1.JPG" width="230">
 이고, 예측 모델의 함수는,
-<img src="/image/p_li_2.JPG" width="250" height="400">
+<img src="/image/p_li_2.JPG" width="250">
 이므로 실제 값과 예측 값의 차이가 많지 않음을 알 수 있다.
 <br /> 
 
@@ -116,7 +116,7 @@ Regularized Linear Regression(규제가 있는 선형 모델)
  - a 가 아주 크면 모든 가중치가 거의 0에 가까워지고 결국 데이터의 평균을 지나는 수평선이 됨
  <br /> 
  릿지 회귀의 비용함수는 아래 수식과 같다.
- <img src="/image/ridge_mse.JPG" width="350" height="400">
+ <img src="/image/ridge_mse.JPG" width="350">
 
  위에서 보았던 boston house price 예측에 ridge 회귀를 적용할 경우 선형 회귀보다 더 나은 성능을 얻을 수 있다.
 
@@ -140,7 +140,7 @@ print('MSE of test set: ', mean_squared_error(y_test, test_pred))    # 29.878
  - 이를 통해 모델을 이해하기 쉬워지고 모델의 가장 중요한 특성이 무엇인지 파악 가능
  <p></p>
  라쏘 회귀의 비용함수는 아래 수식과 같다.
- <img src="/image/lasso_mse.JPG" width="350" height="400">
+ <img src="/image/lasso_mse.JPG" width="350">
 
  마찬가지로 boston house에 Lasso 모델을 적용한다.  lasso모델의 coef_ 파라미터를 이용하면 몇 개의 특성이 제외되고 사용되었는지 알 수 있다.
 
@@ -165,7 +165,7 @@ print('사용한 특성의 수 : ',np.sum(lasso.coef_ != 0))					 # 13
 
  <p></p>
  엘라스틱넷의 비용함수는 아래 수식과 같다.
- <img src="/image/elasticnet_mse.JPG" width="350" height="400">
+ <img src="/image/elasticnet_mse.JPG" width="350">
 
  elastic net도 boston house price에 적용.
 ```python

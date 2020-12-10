@@ -21,17 +21,17 @@ Intro
 그동안 keras를 통해 딥러닝 모델을 구축하기 위해서는 Sequential 모델을 이용하였을 것이다.
 Sequential 모델은 네트워크의 입력과 출력이 하나라고 가정하고 층을 차레대로 쌓아 구성한다. 
 
-<img src="/image/sequential.PNG" width="300" height="300">
+<img src="/image/sequential.PNG" width="300">
 
 따라서 위와 같은 Sequential 모델에 데이터를 학습하기 위해서는 모든 데이터를 같은 방식으로 전처리하여 모델에 맞게 shape을 구성해주어야 한다.
 하지만, 위와 같은 구성이 맞지 않는 경우도 존재한다. 예를 들어, 중고 의류 시장 가격을 예측하는 딥러닝 모델을 만든다고 가정해보겠다.
 
 이 모델은 시장 가격 예측을 위해 의류 브랜드, 제작 연도와 같은 정보(메타 데이터), 사용자가 제공한 제품 리뷰(텍스트 데이터), 해당 의류 사진(이미지 데이터)과 같은 데이터를 받는다.
-<img src="/image/cloth_example.PNG" width="400" height="400">
+<img src="/image/cloth_example.PNG" width="400">
 
 모델은 데이터의 특성에 맞게 적절히 사용되어야 하는데, 해당 데이터가 text인지, image인지, time-series인지에 따라 학습하는 모델도 달라진다. 
 위와 같은 경우, 
-<img src="/image/cloth_model.PNG" width="400" height="400">
+<img src="/image/cloth_model.PNG" width="400">
 메타 데이터만 있다면 이를 one-hot encoding하여 단순한 DenseNet모델을 구현할 수 있을 것이고, 
 텍스트 데이터의 경우 이를 word2vec 같은 기법을 통해 벡터로 변환하여 Embedding 모델이나 혹은 RNN모델을 구현할 수 있을 것이고,
 이미지 데이터의 경우 CNN과 같은 ConveNet 모듈을 이용하여 데이터를 학습할 수 있을 것이다.
@@ -46,14 +46,14 @@ keras functional api
 함수형 api라고 불리며, 말 그대로 모델을 함수처럼 필요할 때 호출하여 사용할 수 있도록 한다. 즉, 모델을 함수로 구현하여 모듈식으로 이용한다는 말이다.
 
 다시 위의 예로 돌아가 함수형 API를 활용하면 아래 그림과 같이 모델별 학습 및 예측이 가능해진다.
-<img src="/image/cloth_model_concat.PNG" width="500" height="500">
+<img src="/image/cloth_model_concat.PNG" width="500">
 
 
 위 그림과 같은 모델을 다중입력모델(multi-input model)이라고 하며 이 외에도 다중출력모델(multi-output model)이 존재합니다. 
 - 다중입력모델: 데이터 특성에 따른 서로 다른 여러개의 모델이 input으로 사용되어 하나의 output을 내는 네트워크
-<img src="/image/multi_input.PNG" width="400" height="400">
+<img src="/image/multi_input.PNG" width="400">
 - 다중출력모델: 하나의 output이 아닌 데이터에 있는 여러 속성을 동시에 예측하는 네트워크
-<img src="/image/multi_output.PNG" width="400" height="400">
+<img src="/image/multi_output.PNG" width="400">
 
 ---
 함수형 API는 기존 구현방법과 구조적으로 차이가 있다.
@@ -102,7 +102,7 @@ functional api를 적용하기 위하여 두개의 모델을 구축하였다.
 - text 데이터는 vectorize 후 Embedding 모델을 이용하였다.
 
 개략적인 모델 구성도는 대략 아래 그림과 같다. 
-<img src="/image/model_structure_0.PNG" width="400" height="400">
+<img src="/image/model_structure_0.PNG" width="400">
 <p></p>
 **1. LSTM 모델 적용을 위한 Sequence 데이터 처리**
 우선 LSTM과 같은 Recurrent 모델은 크기가 (timesteps, input_features)인 2D 텐서로 인코딩된 벡터의 시퀀스를 입력받기 때문에 shape을 맞추어 준다. 

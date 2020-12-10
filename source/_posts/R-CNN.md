@@ -30,7 +30,7 @@ Intro
 지난 10년간 다양한 visual recognition 작업에서는 주로 *SIFT와 HOG(gradient 기반의 특징점 추출 알고리즘)*가 가장 많이 사용되었는데, 이는 2010 ~ 2012년의 PASCAL VOC obeject detection에서 일반적으로 인정되는 방법이었다. 하지만 이후 back-propagation이 가능한 SGD(Stochastic Gradient Descent)기반의 CNN(Convolutional Neural Networks)이 등장하기 시작하였고 SIFT와 HOG와 같은 알고리즘과 비교하여 PASCAL VOC object detection에서 굉장한 성능을 보이게 되었다.
 Image Classification과 다르게 detection은 이미지내에서 객체를 localizing하는 것이 요구되는데 이를 위해, 논문의 모델은 sliding-window 방식을 적용하였고, 높은 공간 해상도(high spartial resolution)을 유지하기 위해 5개의 Convolutional 레이어를 적용하였다. 
 우선 간단하게 R-CNN은 아래와 같은 프로세스로 작동한다.
-<img src="/image/rcnn.JPG" width="800" height="200">
+<img src="/image/rcnn.JPG" width="800" >
 
 > **R-CNN 프로세스**
 > 1. Input 이미지로부터 2,000개의 독립적인 region proposal을 생성
@@ -61,7 +61,7 @@ Image Classification과 다르게 detection은 이미지내에서 객체를 loca
 ### Feature extraction
 우선 위에서 언급한 Selective Search를 통해 도출 된 각 region proposal로부터 CNN을 사용하여 4096차원의 feature vector를 추출한다. 이후, feature들은 5개의 convolutional layer와 2개의 fully connected layer로 전파되는데, 이때 CNN의 입력으로 사용되기 위해 각 region은 227x227 RGB의 고정된 사이즈로 변환되게 된다.
 
-<img src="/image/rcnn2.JPG" width="600" height="200">
+<img src="/image/rcnn2.JPG" width="600">
 <br/>
 
 ### Training
@@ -81,12 +81,12 @@ IoU는 Area of Overlap(교집합) / Area of Union(합집합)으로 계산되며,
 
 해당 논문에서는 SVM 학습을 위한 라벨로서 IoU를 활용하였고 IoU 가 0.5이상인 것들을 positive 객체로 보고 나머지는 negative로 분류하여 학습하게 된다. 각 SGD iteration마다 32개의 positive window와 96개의 backgroud window 총 128개의 배치로 학습이 진행된다.
 
-<img src="/image/rcnn3.png" width="450" height="200">
+<img src="/image/rcnn3.png" width="450">
 
 <br/>
 
 ## 3. Results on PASCAL VOC 2010-12
-<img src="/image/rcnn4.JPG" width="1000" height="200">
+<img src="/image/rcnn4.JPG" width="1000">
 
 위 테이블은 VOC 2010 테스트 데이터에 대한 각 모델별 결과이다. 맨 오른쪽에서 mAP를 확인할 수 있는데, 논문에서는 결과를 비교하는데 같은 region proposal 알고리즘을 적용한 UVA모델과 mAP를 비교한다.
 위 표를 보면 UVA 모델의 mAP는 35.1%이고, R-CNN의 mAP는 **53.7%**인 것을 확인할 수 있으며 이것은 높은 증가율이라고 저자는 말한다. 또한 VOC 2011/12 데이터 셋 또한 53.3% mAP 높은 성능을 나타냈다.
@@ -99,7 +99,7 @@ R-CNN의 가장 큰 문제는 복잡한 프로세스로 인한 과도한 연상�
 
 R-CNN의 이러한 한계들로 인해, 추후 프로세스 및 연산 측면에서 보완된 모델이 나오게 되는데 그것이 바로 [Fast R-CNN](https://arxiv.org/abs/1504.08083)과 [Faster R-CNN](https://arxiv.org/abs/1506.01497)이다. 
 
-<img src="/image/rcnn_time.png" width="600" height="200">
+<img src="/image/rcnn_time.png" width="600">
 
 위 그림은 R-CNN, SPP-Net, Fast R-CNN, Faster R-CNN의 실행 속도 차이를 나타내는데 Faster R-CNN이 이전 모델보다 비교가 안될 정도로 훠얼씬 빠르다는 것을 알 수 있다. (성능도 더 좋아졌다.)
 아래에서 Fast R-CNN과 Faster R-CNN에 대해 간단하게 집고 넘어가 보도록 한다.
@@ -108,7 +108,7 @@ R-CNN의 이러한 한계들로 인해, 추후 프로세스 및 연산 측면에
 
 ## 5. Fast R-CNN & Faster R-CNN
 ### Fast R-CNN
-<img src="/image/fastrcnn.JPG" width="600" height="200">
+<img src="/image/fastrcnn.JPG" width="600">
 Fast R-CNN의 R-CNN의 문제를 해결하기 위해 나온 모델이다. 
 동작 방식은 R-CNN과 유사하게 region proposal이 작동하지만, RCNN과 다르게 **Fast R-CNN은 먼저 전체 이미지가 ConvNet의 input으로 입력이 된다.** 이미지는 ConvNet을 통과하며 feature map을 추출하게 되고, 이 feature map은 selectice search 기반의 region proposal을 통해 RoI(Regions of Interest)를 뽑아낸다. 
 
@@ -119,7 +119,7 @@ Fast R-CNN의 R-CNN의 문제를 해결하기 위해 나온 모델이다.
 <br/>
 
 ### Faster R-CNN
-<img src="/image/fasterrcnn.JPG" width="500" height="200">
+<img src="/image/fasterrcnn.JPG" width="500">
 Faster R-CNN은 R-CNN과 Fast R-CNN이 region proposal로 인한 과도한 연산 문제를 해결하기 위해 나온 모델이다. 기존 region proposal에 사용되었던 selective search는 연산량을 늘리고 시간을 많이 소모하는 주요 원인이었다. 그래서 Faster R-CNN에서는 selective search 알고리즘을 없애고 **Region Proposal Networks(RPN)**라는 뉴럴 네트워크를 추가하여 region proposal을 예측하도록 했다.  
 
 그 후, 예측된 region proposal은 Fast R-CNN과 유사하게 RoI Pooling layer를 거치며 모든 region을 같은 크기로 고정 후, Classification 및 Bounding Box Regreesion이 수행된다.

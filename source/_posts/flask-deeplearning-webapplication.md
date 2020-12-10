@@ -27,7 +27,7 @@ Java의 Spring처럼 Python에서도 웹 프레임워크를 제공한다. 그 �
 cd workspace
 workspace > mkdir pyflask
 ```
-<img src="/image/flask_dir.JPG" width="500" height="200">
+<img src="/image/flask_dir.JPG" width="500">
 
 #### 2) 가상환경
 flask 환경을 위한 virtualenv 가상환경 라이브러리를 설치한다.
@@ -56,7 +56,7 @@ workspace\pyflask\venv\Scripts > activate
 ```
 flask --version
 ```
-<img src="/image/flask_version.JPG" width="400" height="200">
+<img src="/image/flask_version.JPG" width="400">
 
 <br>
 
@@ -332,17 +332,17 @@ app.run(host='127.0.0.1')
 ```
 위 코드는 \__init\__.py에서 app 애플리케이션을 실행하게 해주며, 위 파이썬 파일 실행 시 아래와 같이 flask 서버가 실행되게 된다. 이후 브라우저에서 http://127.0.0.1:5000 입력 시 위에서 만든 화면을 확인할 수 있다.
 
-<img src="/image/flask_run.JPG" width="650" height="200">
+<img src="/image/flask_run.JPG" width="650">
 
 #### 2) 웹 화면 
 * 메인 페이지
-<img src="/image/flask_index.JPG" width="1000" height="200">
+<img src="/image/flask_index.JPG" width="1000">
 
 * 사용자 입력 페이지
-<img src="/image/flask_get.JPG" width="1000" height="200">
+<img src="/image/flask_get.JPG" width="1000">
 
 * 결과 출력 페이지
-<img src="/image/flask_result.JPG" width="1000" height="200">
+<img src="/image/flask_result.JPG" width="1000">
 
 Outro
 ---

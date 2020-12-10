@@ -13,7 +13,7 @@ tags:
 Intro
 ---
 최근 kaggle에서 굉장히 눈에 띄는 competition이 있었으니 바로, [**Predicting Molecular Properties**](https://www.kaggle.com/c/champs-scalar-coupling)라는 이름의 대회였다. 해당 competition은 브리스톨 대학교, 카디프 대학교, 임페리얼 칼리지 및 리즈 대학교로 이루어진 *CHAMPS(CHemistry And Mathematics in Phase Space)* 에 의해 주최되었으며, 수상하는 팀에게는 대학 연구 프로그램과 협력할 수 있는 기회가 주어진다고 한다. 
-<p align="center"><img src="/image/kaggle_molecular.JPG" width="700" height="400"></p>
+<p align="center"><img src="/image/kaggle_molecular.JPG" width="700"></p>
 
 #### 예측 대상 
 우선 해당 대회의 도전과제는 소제목 및 Description을 통해 파악할 수 있다.

@@ -17,7 +17,7 @@ Intro
 ---
 
 얼마 전 캐글에서 구글 Jigsaw/Conversation AI팀에 의해 ['Jigsaw Unintended Bias in Toxicity Classification'](https://www.kaggle.com/c/jigsaw-unintended-bias-in-toxicity-classification)라는 주제로 competition이 개최되어 호기심에 도전해보았다. 
-<img src="/image/jigsaw_competition.JPG" width="700" height="400"> 
+<img src="/image/jigsaw_competition.JPG" width="700"> 
 
 Jigsaw라는 곳을 처음 들어봤는데 알아보니 구글의 자회사로 온라인 상의 욕설이나 선동적, 폭력적 대화를 잡아내는 기술을 연구하는 곳이었고, 
 Description상에 의한 이 Competition의 주요문제는 다음과 같았다. 
@@ -390,7 +390,7 @@ max_len 값은 방금 위에서 sequence로 변환한 데이터 중 가장 많�
 <br/>
 
 ## 6. Embedding + LSTM model
-<img src="/image/embedding_lstm.png" width="850" height="400"> 
+<img src="/image/embedding_lstm.png" width="850"> 
 - 예측을 위해서 embedding 레이어와 lstm 레이어를 연결하여 딥러닝 모델을 구축하였다.
 - **Embedding 레이어**는 텍스트 데이터의 단어 사이의 의미관계를 학습하는데 효과적이므로 텍스트 데이터 학습시 많이 사용되며,
 - LSTM 모델은 **양방향 LSTM(Bidirectional LSTM)**으로 구축하여 시간적 의미와 상관없이 단어들 사이의 양방향적으로 의미 순서를 학습하도록 하였다.

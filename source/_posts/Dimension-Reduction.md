@@ -18,7 +18,7 @@ Intro
 ---
 
 현재 우리는 3차원의 공간에 살고 있어 그 보다 큰 4차원, 5차원 이상의 공간을 머리속으로 떠올리기 힘들다. 
-<img src="/image/curse_d.png" width="600" height="400">
+<img src="/image/curse_d.png" width="600">
 
 즉, 차원(Dimensionality)이라는 것은 공간을 뜻하고 위 그림과 같이 1개의 점인 0차원 부터 시작하여 4차원까지 공간은 몇 개의 점과 선을 그리느냐에 따라 무수히 많은 차원을 가지게 된다.
 
@@ -39,24 +39,24 @@ Intro
 ---
 #### 1. 투영(projection)
 고차원 공간에 있는 훈렴 샘플을 저차원 공간으로 그대로 수직으로 투영하는 방법이며, 아래 그림과 같이 3차원 공간에 있는 샘플들은 사실 2차원 공간에 놓아도 데이터들의 특성이 많이 뭉개지지 않게 된다.
-<img src="/image/projection.png" width="700" height="400">
+<img src="/image/projection.png" width="700">
 <br />
 
 하지만, 투영하는 것이 모든 상황에 최적인 것은 아니다. 
-<img src="/image/swiss_roll.png" width="350" height="400">
+<img src="/image/swiss_roll.png" width="350">
 위 그림과 같이 데이터가 말려있을 경우 데이터를 그대로 투영하게 되면 어떻게 될까? 위 데이터 샘플을 그대로 수직으로 투영할 경우, 아래 왼쪽과 같은 그림이 된다. 
-<img src="/image/swiss_roll_projection.png" width="600" height="400">
+<img src="/image/swiss_roll_projection.png" width="600">
 
 검정, 빨강, 노랑 샘플이 뭉개져버렸기 때문에 2차원에서는 표현을 잘 나타내지를 못하고 있다. 하지만 우리가 원하는 것은 바로 오른쪽과 같이 특성이 뭉개지지 않게 펼쳐진 그림일 것이다. 그리고 이렇게 구부려져 있는 데이터를 반듯이 펴기위해 사용되는 것이 바로 매니폴드 학습이다
 <br />
 
 ##### 2. 매니폴드 학습(manifold learning)
 위에서 보았던 스위스 롤(swiss roll)데이터는 2D 매니폴드의 한 예였다. 한 가지 예를 더 들어 아래와 같은 데이터가 있다고 해보자.
-<img src="/image/manifold1.png" width="300" height="400">
+<img src="/image/manifold1.png" width="300">
 
 위 데이터들 간의 거리를 직선상의 거리로 보았을 때 A와 C가 서로 가까울까, 아니면 A와 G가 서로 가까울까?
 위 그림대로 보았을 때는 A와 C보다는 A와 G사이의 거리가 더 가까워 보인다. 하지만 위 데이터가 실은 아래의 그림을 구부려 놓은 그림이었다면 어떨까? 실제로는 어떤 점이 더 가까운가?
-<img src="/image/manifold2.png" width="350" height="400">
+<img src="/image/manifold2.png" width="350">
 
 위와 같이, 저차원의 데이터가 고차원의 공간에서 휘어지거나 뒤틀려 있는 것을 매니폴드(manifold)라고 하며, 고차원 공간내에서 뒤틀려있는 데이터를 곧게 펴 유클리디안 거리(euclidean distance) 계산을 통해 데이터들 간의 거리를 찾는 학습을 매니폴드 학습(manifold learning)이라고 한다.
 <br />
@@ -66,7 +66,7 @@ Intro
 
 주성분 분석이란 데이터를 가장 잘 표현하는 초평면을 찾아 분산을 최대로 보존하는 축을 찾는 것이다. 즉, 데이터를 가장 잘 표현하는 n개의 구간을 찾아 그것을 n개의 차원으로 축소하여 표현하는 방법이다.
 
-<img src="/image/pca.png" width="600" height="400">
+<img src="/image/pca.png" width="600">
 
  > 주성분을 찾는 과정
  1. 데이터에 가장 가까운 초평면을 정의한 후, 데이터를 이 평면에 투영 

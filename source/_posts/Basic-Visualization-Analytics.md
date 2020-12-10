@@ -36,7 +36,7 @@ cancer = pd.read_csv('./input/data.csv')
 cancer.drop(['id','Unnamed: 32'], axis=1, inplace=True)
 cancer.head(10)
 ```
-<img src="/image/cancer_head.JPG" width="1200" height="400">
+<img src="/image/cancer_head.JPG" width="1200">
 <br/>
 
 이 데이터에서 예측해야하는 타겟 칼럼은 **'diagnosis'**이며, 'M'은 malignant로 양성을 의미하며, 'B'는 Benign으로 음성을 의미한다.
@@ -71,7 +71,7 @@ for cnt, col in enumerate(cancer):
     except Exception as e:
         pass
 ```
-<img src="/image/cancer_distplot.png" width="900" height="400">
+<img src="/image/cancer_distplot.png" width="900">
 
 위의 그림으로 보았을 때 radius_mean, area_mean, perimeter_mean 칼럼이 양성일때와 음성일때 분포가 크게 다른 것을 알 수 있고, 특히 area_mean 칼럼은 분포가 넓게 퍼져있는 것을 알 수 있다.
 <br/>
@@ -106,7 +106,7 @@ plt.xlabel('pcomp 1')
 plt.ylabel('pcomp 2')
 plt.show()
 ```
-<img src="/image/cancer_2dplot.png" width="700" height="400">
+<img src="/image/cancer_2dplot.png" width="700">
 
 2차원으로 표현해본 결과 양성일때와 음성일 때 극명하게 분포가 나뉘는 것을 확인해볼 수 있다. 
 <br/>
@@ -130,7 +130,7 @@ ax.set_ylabel('pcomp 2')
 ax.set_zlabel('pcomp 3')
 plt.show()
 ```
-<img src="/image/cancer_3dplot.png" width="700" height="400">
+<img src="/image/cancer_3dplot.png" width="700">
 <br/>
 
 ## 4. Corrleation Heatmap
@@ -154,7 +154,7 @@ plt.figure(figsize=(13,10))
 g = sns.heatmap(cancer[top_corr_features].corr(), annot=True, cmap="RdYlGn")
 plt.show()
 ```
-<img src="/image/cancer_correaltion.png" width="750" height="400">
+<img src="/image/cancer_correaltion.png" width="750">
 <br/>
 
 
@@ -186,7 +186,7 @@ ax.set_xticklabels(df_fi['columns'], rotation=80, fontsize=13)
 plt.tight_layout()
 plt.show()
 ```
-<img src="/image/cancer_fi.png" width="1000" height="400">
+<img src="/image/cancer_fi.png" width="1000">
 변수 중요도 출력결과 concave_points_worst가 0.175로 가장 중요한 예측 변수이며, 그 뒤로 perimeter_worst, perimeter_mean, radius_word가 주요 예측 변수로 나타났다.
 
 ---
