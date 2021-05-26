@@ -1,0 +1,52 @@
+#title in header
+title: "⬅ Apply Dark."
+
+#main info
+#owner
+owner: "I'm JaeHyeong.🤤"
+email: nonamed000000@gmail.com
+info: '"柔らかい陽の光を浴びれば また目を覚まして また歩き出せる."'
+#description
+desc: '#DataScience #MachineLearning #NLP #Python #Developer 👨‍💻'
+
+#menu
+menu:
+  # Works: /Works
+  About: /about
+
+#index/main page max show posts (in number)
+max_post: 8
+
+# Colors use hex color without #
+# Theme color
+tcolor: F7347A
+
+# Define path to user css
+#(could be also located outside of theme)
+# Relative to source/ directory
+usercss: css/user.css
+
+# social profile at the footer/bottom
+footer: true
+placename: Earth
+placelink: https://en.wikipedia.org/wiki/Earth
+github: https://github.com/jaehyeongAN
+linkedin: https://www.linkedin.com/in/jaehyeong-an-005603160/
+instagram: https://www.instagram.com/an_jh.ds/
+
+# Misc
+nanobar: /js/nanobar.min.js
+switch_light: ☀️
+switch_dark: 🌑
+
+# favicon
+favicon: /images/astronaut.png
+# thumbnail
+thumbnail: /images/thumbnail.jpg
+
+article:
+  thumbnail: true
+
+# DISQUS comments (sign up to Disqus to get disqus_shortname)
+disqus_enabled: true
+disqus_shortname: jaehyeongan
